@@ -19,7 +19,7 @@ private String lastName;
 private String phoneNumber;
 private String email;
 
-@OneToMany(mappedBy = "parent")
+@OneToMany(mappedBy ="parent")
 private Collection<Child> children;
 
 public Parent() {}

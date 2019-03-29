@@ -20,18 +20,16 @@ public class Teacher {
 	private int studentsCount;
 	
 	@ManyToMany
-	private Collection<Child> childrens;
+	private Collection<Child> children;
 	
 	public Teacher() {}
 	
-	public Teacher(String firstName, String lastName, String subjectName, int studentsCount,
-			Collection<Child> childrens) {
-		super();
+	public Teacher(String firstName, String lastName, String subjectName, int studentsCount) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.subjectName = subjectName;
 		this.studentsCount = studentsCount;
-		this.childrens = childrens;
+	
 	}
 	
 	public Long getId() {
@@ -53,7 +51,7 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", subjectName="
-				+ subjectName + ", studentsCount=" + studentsCount + ", childrens=" + childrens + "]";
+				+ subjectName + ", studentsCount=" + studentsCount + ", childrens=" + children + "]";
 	}
 	
 

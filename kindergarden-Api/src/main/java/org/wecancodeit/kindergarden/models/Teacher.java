@@ -1,11 +1,12 @@
 package org.wecancodeit.kindergarden.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Teacher {
@@ -19,7 +20,7 @@ public class Teacher {
 	private String subjectName;
 	private int studentsCount;
 	
-	@ManyToMany
+	@OneToMany(mappedBy="teacher")
 	private Collection<Child> children;
 	
 	public Teacher() {}
@@ -29,6 +30,7 @@ public class Teacher {
 		this.lastName = lastName;
 		this.subjectName = subjectName;
 		this.studentsCount = studentsCount;
+		this.children = new ArrayList<Child>();
 	
 	}
 	

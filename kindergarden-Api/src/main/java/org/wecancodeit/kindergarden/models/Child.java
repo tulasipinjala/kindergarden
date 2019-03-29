@@ -22,16 +22,17 @@ private String age;
 
 @ManyToOne
 private Parent parent;
-@ManyToMany(mappedBy = "children")
-private Collection<Teacher> teachers;
+@ManyToOne
+private Teacher teacher;
 
 public Child() {}
 
 
-public Child(String firstName, String lastName, String age) {
+public Child(String firstName, String lastName, String age, Teacher teacher) {
 	this.firstName = firstName;
 	this.lastName = lastName;
 	this.age = age;
+	this.teacher = teacher;
 }
 
 public Long getId() {
@@ -50,8 +51,8 @@ public Parent getParent() {
 	return parent;
 }
 
-public Collection<Teacher> getTeachers() {
-	return teachers;
+public Teacher getTeacher() {
+	return teacher;
 }
 @Override
 public String toString() {

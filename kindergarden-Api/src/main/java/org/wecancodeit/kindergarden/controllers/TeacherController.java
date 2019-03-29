@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.kindergarden.models.Teacher;
-import org.wecancodeit.kindergardenRepositories.TeacherRepository;
+import org.wecancodeit.kindergarden.repositories.TeacherRepository;
 
 @RestController
 public class TeacherController {

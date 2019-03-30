@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.wecancodeit.kindergarden.models.Child;
 import org.wecancodeit.kindergarden.models.Teacher;
 import org.wecancodeit.kindergarden.repositories.TeacherRepository;
 @CrossOrigin
@@ -26,18 +27,29 @@ public class TeacherController {
 	}
 	
 	
-	@PostMapping("/teachers/add/{id}")
-	public Teacher addTeacher(@PathVariable Long id, @RequestBody String body) throws JSONException {
-		JSONObject json = new JSONObject(body);
-		String firstName = json.getString("firstName");
+//	@PostMapping("/teachers/add")
+//	public Teacher addTeacher(@PathVariable Long id, @RequestBody String body) throws JSONException {
+//		JSONObject json = new JSONObject(body);
+//		String firstName = json.getString("firstName");
+//		String lastName = json.getString("lastName");
+//		String subjectName = json.getString("subjectName");
+//		int studentsCount = json.getInt("studentsCount");
+//		Teacher teacherToAdd = teacherRepo.findById(id).get();
+//		teacherRepo.save(new Teacher(firstName, lastName, subjectName,studentsCount));
+//		teacherToAdd = teacherRepo.findById(id).get();
+//		return teacherToAdd;
+//		
+//	}
+	
+	@PostMapping("/teachers/add")
+	public Collection<Teacher> addTeacher(@RequestBody String body) throws JSONException{
+	 JSONObject json = new JSONObject(body);
+	 String firstName = json.getString("firstName");
 		String lastName = json.getString("lastName");
 		String subjectName = json.getString("subjectName");
 		int studentsCount = json.getInt("studentsCount");
-		Teacher teacherToAdd = teacherRepo.findById(id).get();
-		teacherRepo.save(new Teacher(firstName, lastName, subjectName,studentsCount));
-		teacherToAdd = teacherRepo.findById(id).get();
-		return teacherToAdd;
-		
+	 teacherRepo.save(new Teacher(firstName, lastName, subjectName, studentsCount));
+	 return (Collection<Teacher>) teacherRepo.findAll();
 	}
 	
 }

@@ -23,7 +23,7 @@ public class ChildController {
 @Resource
 ChildRepository childRepo;
 
-@GetMapping(("/childrens"))
+@GetMapping("/childrens")
 public Collection<Child> getChild() {
 	return (Collection<Child>) childRepo.findAll();
 }
@@ -41,6 +41,9 @@ public Collection<Child> addChild(@RequestBody String body) throws JSONException
  childRepo.save(new Child(firstName, lastName, age));
  return (Collection<Child>) childRepo.findAll();
 }
+
+
+
 }
 
 	

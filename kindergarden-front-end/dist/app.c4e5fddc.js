@@ -171,6 +171,32 @@ var _default = {
   postRequest: postRequest
 };
 exports.default = _default;
+},{}],"JS/components/add.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function addParents() {
+  return "\n    <section class=\"add__parent\">\n        <h3>Add Parent</h3>\n        \n            <input type=\"select\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"select\" class=\"add__phoneNumber\" placeholder=\"phone number\">\n            <input type=\"text\" class=\"add__email\" placeholder=\"email\">\n            <button class=\"add__parent__button\">Add Parent</button>\n        </section> \n        ";
+}
+
+function addChildrens() {
+  return "\n    <section class=\"add__child\">\n        <h3>Add Child</h3>\n        \n            <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"text\" class=\"add__age\" placeholder=\"age\">\n            <input type=\"text\" class=\"add__teacher\" placeholder=\"teacher\">\n            <button class=\"add__child__button\">Add Child</button>\n        </section> \n        ";
+}
+
+function addTeachers() {
+  return "\n    <section class=\"add__teacher\">\n        <h3>Add Teacher</h3>\n        \n            <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"text\" class=\"add__subjectName\" placeholder=\"subject name\">\n            <input type=\"text\" class=\"add__studentsCount\" placeholder=\"number of students\">\n            <button class=\"add__teacher__button\">Add Teacher</button>\n        </section> \n        ";
+}
+
+var _default = {
+  addParents: addParents,
+  addChildrens: addChildrens,
+  addTeachers: addTeachers
+};
+exports.default = _default;
 },{}],"JS/components/Parents.js":[function(require,module,exports) {
 "use strict";
 
@@ -179,7 +205,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Parents;
 
-// import childrens from './Childs'
+var _add = _interopRequireDefault(require("./add"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // export default function Parents(parents) {
 //     return
 //     `
@@ -195,9 +224,9 @@ exports.default = Parents;
 function Parents(parents) {
   return "\n        <ul class=\"parents\">\n            ".concat(parents.map(function (parent) {
     return "\n                    <li class=\"parent\">\n                        <h4 class=\"parent__parentName\" id=\"".concat(parent.id, "\">").concat(parent.firstName, " ").concat(parent.lastName, "</h4>                      \n                    </li>\n                ");
-  }).join(''), "\n        </ul>\n    ");
+  }).join(''), "\n        </ul>\n        <section class=\"add__parent\">\n        <h3>Add Parent</h3>\n        \n            <input type=\"select\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"select\" class=\"add__phoneNumber\" placeholder=\"phone number\">\n            <input type=\"text\" class=\"add__email\" placeholder=\"email\">\n            <button class=\"add__parent__button\">Add Parent</button>\n        </section> \n    ");
 }
-},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./add":"JS/components/add.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -282,7 +311,7 @@ require("../../CSS/index.css");
 function Teachers(teachers) {
   return "\n        <ul class=\"teachers\">\n            ".concat(teachers.map(function (teacher) {
     return "\n                    <li class=\"teacher\">\n                        <h3 class=\"teacher__teacherName\" id=\"".concat(teacher.id, "\">").concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>                     \n                    </li>\n                    ");
-  }).join(''), "\n            </ul>\n            ");
+  }).join(''), "\n            </ul>\n            <section class=\"add__teacher\">\n        <h3>Add Teacher</h3>\n        \n            <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"text\" class=\"add__subjectName\" placeholder=\"subject name\">\n            <input type=\"text\" class=\"add__studentsCount\" placeholder=\"number of students\">\n            <button class=\"add__teacher__button\">Add Teacher</button>\n        </section> \n            ");
 }
 },{"../../CSS/index.css":"CSS/index.css"}],"JS/components/Childs.js":[function(require,module,exports) {
 "use strict";
@@ -295,7 +324,7 @@ exports.default = Childrens;
 function Childrens(childrens) {
   return "\n        <ul class=\"childrens\">\n            ".concat(childrens.map(function (children) {
     return "\n                    <li class=\"children\">\n                        <h4 class=\"children__childrenName\" id=\"".concat(children.id, "\">").concat(children.firstName, " ").concat(children.lastName, "</h4>                      \n                    </li>\n                ");
-  }).join(''), "\n        </ul>\n    ");
+  }).join(''), "\n        </ul>\n        <section class=\"add__child\">\n        <h3>Add Child</h3>\n        \n            <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"text\" class=\"add__age\" placeholder=\"age\">\n            <input type=\"text\" class=\"add__teacher\" placeholder=\"teacher\">\n            <button class=\"add__child__button\">Add Child</button>\n        </section> \n    ");
 }
 },{}],"JS/app.js":[function(require,module,exports) {
 "use strict";
@@ -309,6 +338,8 @@ var _Parents = _interopRequireDefault(require("./components/Parents"));
 var _Teachers = _interopRequireDefault(require("./components/Teachers"));
 
 var _Childs = _interopRequireDefault(require("./components/Childs"));
+
+var _add = _interopRequireDefault(require("./components/add"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -363,9 +394,9 @@ function addParents() {
       var firstName = document.querySelector('.add__firstName').value;
       var lastName = document.querySelector('.add__lastName').value;
       var phoneNumber = document.querySelector('.add__phoneNumber').value;
-      var email = document.querySelector('add__email').value;
+      var email = document.querySelector('.add__email').value;
 
-      _apiActions.default.postRequest('/parents/add', {
+      _apiActions.default.postRequest('http://localhost:8080/parents/add', {
         firstName: firstName,
         lastName: lastName,
         phoneNumber: phoneNumber,
@@ -385,7 +416,7 @@ function addTeachers() {
       var subjectName = document.querySelector('.add__subjectName').value;
       var studentsCount = document.querySelector('.add__studentsCount').value;
 
-      _apiActions.default.postRequest('/teachers/add', {
+      _apiActions.default.postRequest('http://localhost:8080/teachers/add', {
         firstName: firstName,
         lastName: lastName,
         subjectName: subjectName,
@@ -405,7 +436,7 @@ function addChildrens() {
       var age = document.querySelector('.add__age').value;
       var teacher = document.querySelector('.add__teacher').value;
 
-      _apiActions.default.postRequest('/children/add', {
+      _apiActions.default.postRequest('http://localhost:8080/childrens/add', {
         firstName: firstName,
         lastName: lastName,
         age: age,
@@ -420,7 +451,7 @@ function addChildrens() {
 function getAppContext() {
   return document.querySelector('#app');
 }
-},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childs":"JS/components/Childs.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childs":"JS/components/Childs.js","./components/add":"JS/components/add.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -448,7 +479,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49265" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49985" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

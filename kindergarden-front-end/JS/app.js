@@ -3,6 +3,7 @@ import events from './utils/events/event-actions'
 import Parents from './components/Parents'
 import Teachers from './components/Teachers'
 import Childrens from './components/Childs'
+import Add from './components/add'
 
  main()
 
@@ -52,8 +53,8 @@ function addParents() {
 			const firstName = document.querySelector('.add__firstName').value
             const lastName = document.querySelector('.add__lastName').value
             const phoneNumber = document.querySelector('.add__phoneNumber').value
-            const email = document.querySelector('add__email').value
-			api.postRequest('/parents/add', {
+            const email = document.querySelector('.add__email').value
+			api.postRequest('http://localhost:8080/parents/add', {
 				firstName : firstName,
                 lastName : lastName,
                 phoneNumber : phoneNumber,
@@ -70,7 +71,7 @@ function addTeachers() {
             const lastName = document.querySelector('.add__lastName').value
             const subjectName = document.querySelector('.add__subjectName').value
             const studentsCount = document.querySelector('.add__studentsCount').value
-			api.postRequest('/teachers/add', {
+			api.postRequest('http://localhost:8080/teachers/add', {
 				firstName : firstName,
                 lastName : lastName,
                 subjectName :subjectName,
@@ -86,7 +87,7 @@ function addChildrens() {
             const lastName = document.querySelector('.add__lastName').value
             const age = document.querySelector('.add__age').value
             const teacher = document.querySelector('.add__teacher').value
-			api.postRequest('/children/add', {
+			api.postRequest('http://localhost:8080/childrens/add', {
 				firstName : firstName,
                 lastName : lastName,
                 age : age,

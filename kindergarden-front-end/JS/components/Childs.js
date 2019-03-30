@@ -9,5 +9,14 @@ export default function Childrens(childrens) {
                 `
     }).join('')}
         </ul>
+        <section class="add__child">
+        <h3>Add Child</h3>
+        
+            <input type="text" class="add__firstName" placeholder="first name">
+            <input type="text" class="add__lastName" placeholder="last name">
+            <input type="text" class="add__age" placeholder="age">
+            <input type="text" class="add__teacher" placeholder="teacher">
+            <button class="add__child__button">Add Child</button>
+        </section> 
     `
 }

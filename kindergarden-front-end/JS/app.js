@@ -7,8 +7,9 @@ import Childrens from './components/Childs'
  main()
 
 function main() {
- 	api.getRequest('http://localhost:1234/parents', parents => {
+ 	api.getRequest('http://localhost:8080/parents', parents => {
 		 getAppContext().innerHTML = Parents(parents)
+		 
 })
 
 	navParent()
@@ -22,15 +23,16 @@ function main() {
 function navParent() {
 	const parentButton = document.querySelector('.nav__parents');
 	events.on(parentButton, 'click', ()=> {
-		api.getRequest('/parents', parents => { 
+		api.getRequest('http://localhost:8080/parents', parents => { 
 			getAppContext().innerHTML = Parents(parents)
+		
 		})
 	})
 }
 function navTeacher() {
 	const teacherButton = document.querySelector('.nav__teachers');
 	events.on(teacherButton, 'click', ()=> {
-		api.getRequest('http://localhost:1234/teachers', teachers => { 
+		api.getRequest('http://localhost:8080/teachers', teachers => { 
 			getAppContext().innerHTML = Teachers(teachers)
 		})
 	})
@@ -38,7 +40,7 @@ function navTeacher() {
 function navChild() {
 	const childButton = document.querySelector('.nav__childrens');
 	events.on(childButton, 'click', ()=> {
-		api.getRequest('http://localhost:1234/childrens', childrens => { 
+		api.getRequest('http://localhost:8080/childrens', childrens => { 
 			getAppContext().innerHTML = Childrens(childrens)
 		})
 	})
@@ -94,6 +96,6 @@ function addChildrens() {
 	})
 }
 function getAppContext() {
-	return document.querySelector('#app')
+	return document.querySelector('#app');
  }
 

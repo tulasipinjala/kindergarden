@@ -24,6 +24,7 @@ private String lastName;
 private String age;
 
 @ManyToOne
+@JsonIgnore
 private Parent parent;
 @ManyToMany
 @JsonIgnore

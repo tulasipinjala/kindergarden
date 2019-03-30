@@ -20,8 +20,9 @@ private	String firstName;
 private String lastName;
 private String phoneNumber;
 private String email;
-@JsonIgnore
+
 @OneToMany(mappedBy ="parent")
+@JsonIgnore
 private Collection<Child> childrens;
 
 public Parent() {}

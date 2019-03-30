@@ -171,19 +171,6 @@ var _default = {
   postRequest: postRequest
 };
 exports.default = _default;
-},{}],"JS/components/Childs.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Childrens;
-
-function Childrens(childrens) {
-  return "\n        <ul class=\"childrens\">\n            ".concat(childrens.map(function (children) {
-    return "\n                    <li class=\"children\">\n                        <h4 class=\"children__childrenName\" id=\"".concat(children.id, "\">").concat(children.firstName, " ").concat(children.lastName, "</h4>                      \n                    </li>\n                ");
-  }).join(''), "\n        </ul>\n    ");
-}
 },{}],"JS/components/Parents.js":[function(require,module,exports) {
 "use strict";
 
@@ -192,17 +179,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Parents;
 
-var _Childs = _interopRequireDefault(require("./Childs"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+// import childrens from './Childs'
+// export default function Parents(parents) {
+//     return
+//     `
+//         <ul class="parents">
+//             ${parents.map(parent => {
+//         return `
+//                     <h4 class="parent__parentName" id="${parent.id}">${parent.firstName} ${parent.lastName}</h4>
+//                     `;
+//     }).join('')}
+//         </ul>
+//     `
+// }
 function Parents(parents) {
-  return;
-  "\n        <ul class=\"parents\">\n            ".concat(parents.map(function (parent) {
-    return "\n                    <h4 class=\"parent__parentName\" id=\"".concat(parent.id, "\">").concat(parent.firstName, " ").concat(parent.lastName, "</h4>\n                    ");
+  return "\n        <ul class=\"parents\">\n            ".concat(parents.map(function (parent) {
+    return "\n                    <li class=\"parent\">\n                        <h4 class=\"parent__parentName\" id=\"".concat(parent.id, "\">").concat(parent.firstName, " ").concat(parent.lastName, "</h4>                      \n                    </li>\n                ");
   }).join(''), "\n        </ul>\n    ");
 }
-},{"./Childs":"JS/components/Childs.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -289,7 +284,20 @@ function Teachers(teachers) {
     return "\n                    <li class=\"teacher\">\n                        <h3 class=\"teacher__teacherName\" id=\"".concat(teacher.id, "\">").concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>                     \n                    </li>\n                    ");
   }).join(''), "\n            </ul>\n            ");
 }
-},{"../../CSS/index.css":"CSS/index.css"}],"JS/app.js":[function(require,module,exports) {
+},{"../../CSS/index.css":"CSS/index.css"}],"JS/components/Childs.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Childrens;
+
+function Childrens(childrens) {
+  return "\n        <ul class=\"childrens\">\n            ".concat(childrens.map(function (children) {
+    return "\n                    <li class=\"children\">\n                        <h4 class=\"children__childrenName\" id=\"".concat(children.id, "\">").concat(children.firstName, " ").concat(children.lastName, "</h4>                      \n                    </li>\n                ");
+  }).join(''), "\n        </ul>\n    ");
+}
+},{}],"JS/app.js":[function(require,module,exports) {
 "use strict";
 
 var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
@@ -307,7 +315,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 main();
 
 function main() {
-  _apiActions.default.getRequest('http://localhost:1234/parents', function (parents) {
+  _apiActions.default.getRequest('http://localhost:8080/parents', function (parents) {
     getAppContext().innerHTML = (0, _Parents.default)(parents);
   });
 
@@ -323,7 +331,7 @@ function navParent() {
   var parentButton = document.querySelector('.nav__parents');
 
   _eventActions.default.on(parentButton, 'click', function () {
-    _apiActions.default.getRequest('/parents', function (parents) {
+    _apiActions.default.getRequest('http://localhost:8080/parents', function (parents) {
       getAppContext().innerHTML = (0, _Parents.default)(parents);
     });
   });
@@ -333,7 +341,7 @@ function navTeacher() {
   var teacherButton = document.querySelector('.nav__teachers');
 
   _eventActions.default.on(teacherButton, 'click', function () {
-    _apiActions.default.getRequest('http://localhost:1234/teachers', function (teachers) {
+    _apiActions.default.getRequest('http://localhost:8080/teachers', function (teachers) {
       getAppContext().innerHTML = (0, _Teachers.default)(teachers);
     });
   });
@@ -343,7 +351,7 @@ function navChild() {
   var childButton = document.querySelector('.nav__childrens');
 
   _eventActions.default.on(childButton, 'click', function () {
-    _apiActions.default.getRequest('http://localhost:1234/childrens', function (childrens) {
+    _apiActions.default.getRequest('http://localhost:8080/childrens', function (childrens) {
       getAppContext().innerHTML = (0, _Childs.default)(childrens);
     });
   });
@@ -440,7 +448,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53668" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49265" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

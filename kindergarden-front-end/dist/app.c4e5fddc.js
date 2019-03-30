@@ -117,69 +117,184 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"app.f84e1103.js":[function(require,module,exports) {
-var define;
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+})({"JS/utils/events/event-actions.js":[function(require,module,exports) {
+"use strict";
 
-parcelRequire = function (e, r, t, n) {
-  var i,
-      o = "function" == typeof parcelRequire && parcelRequire,
-      u = "function" == typeof require && require;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-  function f(t, n) {
-    if (!r[t]) {
-      if (!e[t]) {
-        var i = "function" == typeof parcelRequire && parcelRequire;
-        if (!n && i) return i(t, !0);
-        if (o) return o(t, !0);
-        if (u && "string" == typeof t) return u(t);
-        var c = new Error("Cannot find module '" + t + "'");
-        throw c.code = "MODULE_NOT_FOUND", c;
-      }
+function on(element, eventType, callback) {
+  element.addEventListener(eventType, function (event) {
+    return callback(event);
+  });
+}
 
-      p.resolve = function (r) {
-        return e[t][1][r] || r;
-      }, p.cache = {};
-      var l = r[t] = new f.Module(t);
-      e[t][0].call(l.exports, p, l, l.exports, this);
-    }
+var _default = {
+  on: on
+};
+exports.default = _default;
+},{}],"JS/utils/api/api-actions.js":[function(require,module,exports) {
+"use strict";
 
-    return r[t].exports;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-    function p(e) {
-      return f(p.resolve(e));
-    }
-  }
+function getRequest(location, callback) {
+  fetch(location).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
 
-  f.isParcelRequire = !0, f.Module = function (e) {
-    this.id = e, this.bundle = f, this.exports = {};
-  }, f.modules = e, f.cache = r, f.parent = o, f.register = function (r, t) {
-    e[r] = [function (e, r) {
-      r.exports = t;
-    }, {}];
-  };
+function postRequest(location, requestBody, callback) {
+  fetch(location, {
+    method: "POST",
+    body: JSON.stringify(requestBody)
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
 
-  for (var c = 0; c < t.length; c++) {
-    try {
-      f(t[c]);
-    } catch (e) {
-      i || (i = e);
-    }
-  }
+var _default = {
+  getRequest: getRequest,
+  postRequest: postRequest
+};
+exports.default = _default;
+},{}],"JS/components/Parents.js":[function(require,module,exports) {
+"use strict";
 
-  if (t.length) {
-    var l = f(t[t.length - 1]);
-    "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) && "undefined" != typeof module ? module.exports = l : "function" == typeof define && define.amd ? define(function () {
-      return l;
-    }) : n && (this[n] = l);
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Parents;
 
-  if (parcelRequire = f, i) throw i;
-  return f;
-}({
-  "vBEn": [function (require, module, exports) {}, {}]
-}, {}, ["vBEn"], null);
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+// import childrens from './Childs'
+function Parents(parents) {
+  return "Hello World";
+} // `
+//     <ul class="parents">
+//         ${parents.map(parent=> {
+//             return `
+//                 <h4 class="parent__parentName" id="${parent.id}">${parent.firstName} ${parent.lastName}</h4>
+//                 `;
+//             }).join('')}
+//     </ul>
+// `
+},{}],"JS/app.js":[function(require,module,exports) {
+"use strict";
+
+var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
+
+var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
+
+var _Parents = _interopRequireDefault(require("./components/Parents"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import Teachers from './components/Teachers'
+// import Childrens from './components/Childrens'
+main();
+
+function main() {
+  _apiActions.default.getRequest('http://localhost:8080/parents', function (parents) {
+    getAppContext().innerHTML = (0, _Parents.default)(parents);
+  });
+} // 	navParent()
+// 	navTeacher()
+//     navChildren() 
+//     addParents()
+//     addTeachers()
+//     addChildrens()
+// }
+// function navParent() {
+// 	const parentButton = document.querySelector('.nav__parents');
+// 	events.on(parentButton, 'click', ()=> {
+// 		api.getRequest('/parents', parents => { 
+// 			getAppContext().innerHTML = Parents(parents)
+// 		})
+// 	})
+// }
+// function navTeacher() {
+// 	const teacherButton = document.querySelector('.nav__teachers');
+// 	events.on(teacherButton, 'click', ()=> {
+// 		api.getRequest('/teachers', teachers => { 
+// 			getAppContext().innerHTML = Teachers(teachers)
+// 		})
+// 	})
+// }
+// function navChildren() {
+// 	const childButton = document.querySelector('.nav__childrens');
+// 	events.on(childButton, 'click', ()=> {
+// 		api.getRequest('/childrens', childrens => { 
+// 			getAppContext().innerHTML = Childrens(childrens)
+// 		})
+// 	})
+// }
+// function addParents() {
+// 	events.on(getAppContext(), 'click', ()=> {
+// 		if(event.target.classList.contains('add__parent__button')) {
+// 			const firstName = document.querySelector('.add__firstName').value
+//             const lastName = document.querySelector('.add__lastName').value
+//             const phoneNumber = document.querySelector('.add__phoneNumber').value
+//             const email = document.querySelector('add__email').value
+// 			api.postRequest('/parents/add', {
+// 				firstName : firstName,
+//                 lastName : lastName,
+//                 phoneNumber : phoneNumber,
+//                 email: email
+// 			}, (parents) => getAppContext().innerHTML = Parents(parents))
+// 		}
+// 	})
+// }
+// function addTeachers() {
+// 	events.on(getAppContext(), 'click', ()=> {
+// 		if(event.target.classList.contains('add__teacher__button')) {
+// 			const firstName = document.querySelector('.add__firstName').value
+//             const lastName = document.querySelector('.add__lastName').value
+//             const subjectName = document.querySelector('.add__subjectName').value
+//             const studentsCount = document.querySelector('.add__studentsCount').value
+// 			api.postRequest('/teachers/add', {
+// 				firstName : firstName,
+//                 lastName : lastName,
+//                 subjectName :subjectName,
+//                 studentsCount:studentsCount
+// 			}, (teachers) => getAppContext().innerHTML = Teachers(teachers))
+// 		}
+// 	})
+// }
+// function addChildrens() {
+// 	events.on(getAppContext(), 'click', ()=> {
+// 		if(event.target.classList.contains('add__child__button')) {
+// 			const firstName = document.querySelector('.add__firstName').value
+//             const lastName = document.querySelector('.add__lastName').value
+//             const age = document.querySelector('.add__age').value
+//             const teacher = document.querySelector('.add__teacher').value
+// 			api.postRequest('/children/add', {
+// 				firstName : firstName,
+//                 lastName : lastName,
+//                 age : age,
+//                 teacher: teacher
+// 			}, (childrens) => getAppContext().innerHTML = Childrens(childrens))
+// 		}
+// 	})
+// }
+
+
+function getAppContext() {
+  return document.querySelector('#app');
+}
+},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -207,7 +322,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50770" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51275" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -382,5 +497,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.f84e1103.js"], null)
-//# sourceMappingURL=/app.f84e1103.1e944c0c.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","JS/app.js"], null)
+//# sourceMappingURL=/app.c4e5fddc.js.map

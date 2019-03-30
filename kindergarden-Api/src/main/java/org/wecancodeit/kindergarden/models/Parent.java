@@ -20,7 +20,7 @@ private String phoneNumber;
 private String email;
 
 @OneToMany(mappedBy ="parent")
-private Collection<Child> children;
+private Collection<Child> childrens;
 
 public Parent() {}
 
@@ -51,12 +51,12 @@ public String getEmail() {
 }
 
 public Collection<Child> getChildren() {
-	return children;
+	return childrens;
 }
 @Override
 public String toString() {
 	return "Parent [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
-			+ ", email=" + email + ", children=" + children + "]";
+			+ ", email=" + email + ", children=" + childrens + "]";
 }
 	
 }

@@ -6,7 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Teacher {
@@ -20,17 +20,16 @@ public class Teacher {
 	private String subjectName;
 	private int studentsCount;
 	
-	@OneToMany(mappedBy="teacher")
-	private Collection<Child> children;
+	@ManyToMany(mappedBy="teacher")
+	private Collection<Child> childrens;
 	
-	public Teacher() {}
-	
+		
 	public Teacher(String firstName, String lastName, String subjectName, int studentsCount) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.subjectName = subjectName;
 		this.studentsCount = studentsCount;
-		this.children = new ArrayList<Child>();
+		this.childrens = new ArrayList<Child>();
 	
 	}
 	
@@ -53,7 +52,7 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", subjectName="
-				+ subjectName + ", studentsCount=" + studentsCount + ", childrens=" + children + "]";
+				+ subjectName + ", studentsCount=" + studentsCount + ", childrens=" + childrens + "]";
 	}
 	
 

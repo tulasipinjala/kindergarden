@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Teacher {
 	
@@ -18,7 +20,7 @@ public class Teacher {
 	private String lastName;
 	private String subjectName;
 	private int studentsCount;
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy="teachers")
 	private Collection<Child> childrens;
 	

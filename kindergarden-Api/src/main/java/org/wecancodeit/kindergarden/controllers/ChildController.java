@@ -23,24 +23,22 @@ public class ChildController {
 @Resource
 ChildRepository childRepo;
 
-@GetMapping(("/children"))
-public Collection<Child> getChildren() {
+@GetMapping(("/childrens"))
+public Collection<Child> getChild() {
 	return (Collection<Child>) childRepo.findAll();
 }
-
-@GetMapping("/childrens/{id}")
+@GetMapping("childrens/{id}")
 public Child getChild(@PathVariable Long id) {
 	return childRepo.findById(id).get(); 
 }
 
-@PostMapping("/childrens/add{id}")
-public Collection<Child> addChild(@PathVariable Long id,@RequestBody String body) throws JSONException{
+@PostMapping("/childrens/add")
+public Collection<Child> addChild(@RequestBody String body) throws JSONException{
  JSONObject json = new JSONObject(body);
  String firstName = json.getString("firstName");
  String lastName = json.getString("lastName");
  String age = json.getString("age");
- Child childToAdd = childRepo.findById(id).get();
- childRepo.save(new Child());
+ childRepo.save(new Child(firstName, lastName, age));
  return (Collection<Child>) childRepo.findAll();
 }
 }

@@ -1,4 +1,4 @@
-// import'../../CSS/s.css'
+import'../../CSS/index.css'
 
 export default function Teachers(teachers) {
     return `

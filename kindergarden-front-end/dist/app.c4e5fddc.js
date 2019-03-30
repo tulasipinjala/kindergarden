@@ -151,57 +151,27 @@ function getRequest(location, callback) {
   }).catch(function (err) {
     return console.log(err);
   });
-} // function postRequest(location, requestBody, callback) {
-//     fetch(location, {
-//        method: "POST",
-//        body: JSON.stringify(requestBody)
-//     })
-//     .then(response => response.json())
-//     .then(data => callback(data))
-//     .catch(err => console.log(err))
-// }
+}
 
+function postRequest(location, requestBody, callback) {
+  fetch(location, {
+    method: "POST",
+    body: JSON.stringify(requestBody)
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    return callback(data);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}
 
 var _default = {
-  getRequest: getRequest // postRequest
-
+  getRequest: getRequest,
+  postRequest: postRequest
 };
 exports.default = _default;
-},{}],"JS/components/Parents.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Parents;
-
-// import childrens from './Childs'
-function Parents(parents) {
-  return "";
-} // `
-//     <ul class="parents">
-//         ${parents.map(parent=> {
-//             return `
-//                 <h4 class="parent__parentName" id="${parent.id}">${parent.firstName} ${parent.lastName}</h4>
-//                 `;
-//             }).join('')}
-//     </ul>
-// `
-},{}],"JS/components/Teachers.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Teachers;
-
-// import'../../CSS/s.css'
-function Teachers(teachers) {
-  return "\n        <ul class=\"teachers\">\n            ".concat(teachers.map(function (teacher) {
-    return "\n                    <li class=\"teacher\">\n                        <h3 class=\"teacher__teacherName\" id=\"".concat(teacher.id, "\">").concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>                     \n                    </li>\n                    ");
-  }).join(''), "\n            </ul>\n            ");
-}
-},{}],"JS/components/Childrens.js":[function(require,module,exports) {
+},{}],"JS/components/Childs.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -214,7 +184,112 @@ function Childrens(childrens) {
     return "\n                    <li class=\"children\">\n                        <h4 class=\"children__childrenName\" id=\"".concat(children.id, "\">").concat(children.firstName, " ").concat(children.lastName, "</h4>                      \n                    </li>\n                ");
   }).join(''), "\n        </ul>\n    ");
 }
-},{}],"JS/app.js":[function(require,module,exports) {
+},{}],"JS/components/Parents.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Parents;
+
+var _Childs = _interopRequireDefault(require("./Childs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Parents(parents) {
+  return;
+  "\n        <ul class=\"parents\">\n            ".concat(parents.map(function (parent) {
+    return "\n                    <h4 class=\"parent__parentName\" id=\"".concat(parent.id, "\">").concat(parent.firstName, " ").concat(parent.lastName, "</h4>\n                    ");
+  }).join(''), "\n        </ul>\n    ");
+}
+},{"./Childs":"JS/components/Childs.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"CSS/index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"JS/components/Teachers.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Teachers;
+
+require("../../CSS/index.css");
+
+function Teachers(teachers) {
+  return "\n        <ul class=\"teachers\">\n            ".concat(teachers.map(function (teacher) {
+    return "\n                    <li class=\"teacher\">\n                        <h3 class=\"teacher__teacherName\" id=\"".concat(teacher.id, "\">").concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>                     \n                    </li>\n                    ");
+  }).join(''), "\n            </ul>\n            ");
+}
+},{"../../CSS/index.css":"CSS/index.css"}],"JS/app.js":[function(require,module,exports) {
 "use strict";
 
 var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
@@ -225,101 +300,119 @@ var _Parents = _interopRequireDefault(require("./components/Parents"));
 
 var _Teachers = _interopRequireDefault(require("./components/Teachers"));
 
-var _Childrens = _interopRequireDefault(require("./components/Childrens"));
+var _Childs = _interopRequireDefault(require("./components/Childs"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 main();
 
 function main() {
-  _apiActions.default.getRequest('http://localhost:8080/parents', function (parents) {
+  _apiActions.default.getRequest('http://localhost:1234/parents', function (parents) {
     getAppContext().innerHTML = (0, _Parents.default)(parents);
   });
-} // 	navParent()
-// 	navTeacher()
-//     navChildren() 
-//     addParents()
-//     addTeachers()
-//     addChildrens()
-// }
-// function navParent() {
-// 	const parentButton = document.querySelector('.nav__parents');
-// 	events.on(parentButton, 'click', ()=> {
-// 		api.getRequest('/parents', parents => { 
-// 			getAppContext().innerHTML = Parents(parents)
-// 		})
-// 	})
-// }
-// function navTeacher() {
-// 	const teacherButton = document.querySelector('.nav__teachers');
-// 	events.on(teacherButton, 'click', ()=> {
-// 		api.getRequest('/teachers', teachers => { 
-// 			getAppContext().innerHTML = Teachers(teachers)
-// 		})
-// 	})
-// }
-// function navChildren() {
-// 	const childButton = document.querySelector('.nav__childrens');
-// 	events.on(childButton, 'click', ()=> {
-// 		api.getRequest('/childrens', childrens => { 
-// 			getAppContext().innerHTML = Childrens(childrens)
-// 		})
-// 	})
-// }
-// function addParents() {
-// 	events.on(getAppContext(), 'click', ()=> {
-// 		if(event.target.classList.contains('add__parent__button')) {
-// 			const firstName = document.querySelector('.add__firstName').value
-//             const lastName = document.querySelector('.add__lastName').value
-//             const phoneNumber = document.querySelector('.add__phoneNumber').value
-//             const email = document.querySelector('add__email').value
-// 			api.postRequest('/parents/add', {
-// 				firstName : firstName,
-//                 lastName : lastName,
-//                 phoneNumber : phoneNumber,
-//                 email: email
-// 			}, (parents) => getAppContext().innerHTML = Parents(parents))
-// 		}
-// 	})
-// }
-// function addTeachers() {
-// 	events.on(getAppContext(), 'click', ()=> {
-// 		if(event.target.classList.contains('add__teacher__button')) {
-// 			const firstName = document.querySelector('.add__firstName').value
-//             const lastName = document.querySelector('.add__lastName').value
-//             const subjectName = document.querySelector('.add__subjectName').value
-//             const studentsCount = document.querySelector('.add__studentsCount').value
-// 			api.postRequest('/teachers/add', {
-// 				firstName : firstName,
-//                 lastName : lastName,
-//                 subjectName :subjectName,
-//                 studentsCount:studentsCount
-// 			}, (teachers) => getAppContext().innerHTML = Teachers(teachers))
-// 		}
-// 	})
-// }
-// function addChildrens() {
-// 	events.on(getAppContext(), 'click', ()=> {
-// 		if(event.target.classList.contains('add__child__button')) {
-// 			const firstName = document.querySelector('.add__firstName').value
-//             const lastName = document.querySelector('.add__lastName').value
-//             const age = document.querySelector('.add__age').value
-//             const teacher = document.querySelector('.add__teacher').value
-// 			api.postRequest('/children/add', {
-// 				firstName : firstName,
-//                 lastName : lastName,
-//                 age : age,
-//                 teacher: teacher
-// 			}, (childrens) => getAppContext().innerHTML = Childrens(childrens))
-// 		}
-// 	})
-// }
 
+  navParent();
+  navTeacher();
+  navChild();
+  addParents();
+  addTeachers();
+  addChildrens();
+}
+
+function navParent() {
+  var parentButton = document.querySelector('.nav__parents');
+
+  _eventActions.default.on(parentButton, 'click', function () {
+    _apiActions.default.getRequest('/parents', function (parents) {
+      getAppContext().innerHTML = (0, _Parents.default)(parents);
+    });
+  });
+}
+
+function navTeacher() {
+  var teacherButton = document.querySelector('.nav__teachers');
+
+  _eventActions.default.on(teacherButton, 'click', function () {
+    _apiActions.default.getRequest('http://localhost:1234/teachers', function (teachers) {
+      getAppContext().innerHTML = (0, _Teachers.default)(teachers);
+    });
+  });
+}
+
+function navChild() {
+  var childButton = document.querySelector('.nav__childrens');
+
+  _eventActions.default.on(childButton, 'click', function () {
+    _apiActions.default.getRequest('http://localhost:1234/childrens', function (childrens) {
+      getAppContext().innerHTML = (0, _Childs.default)(childrens);
+    });
+  });
+}
+
+function addParents() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add__parent__button')) {
+      var firstName = document.querySelector('.add__firstName').value;
+      var lastName = document.querySelector('.add__lastName').value;
+      var phoneNumber = document.querySelector('.add__phoneNumber').value;
+      var email = document.querySelector('add__email').value;
+
+      _apiActions.default.postRequest('/parents/add', {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        email: email
+      }, function (parents) {
+        return getAppContext().innerHTML = (0, _Parents.default)(parents);
+      });
+    }
+  });
+}
+
+function addTeachers() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add__teacher__button')) {
+      var firstName = document.querySelector('.add__firstName').value;
+      var lastName = document.querySelector('.add__lastName').value;
+      var subjectName = document.querySelector('.add__subjectName').value;
+      var studentsCount = document.querySelector('.add__studentsCount').value;
+
+      _apiActions.default.postRequest('/teachers/add', {
+        firstName: firstName,
+        lastName: lastName,
+        subjectName: subjectName,
+        studentsCount: studentsCount
+      }, function (teachers) {
+        return getAppContext().innerHTML = (0, _Teachers.default)(teachers);
+      });
+    }
+  });
+}
+
+function addChildrens() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('add__child__button')) {
+      var firstName = document.querySelector('.add__firstName').value;
+      var lastName = document.querySelector('.add__lastName').value;
+      var age = document.querySelector('.add__age').value;
+      var teacher = document.querySelector('.add__teacher').value;
+
+      _apiActions.default.postRequest('/children/add', {
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        teacher: teacher
+      }, function (childrens) {
+        return getAppContext().innerHTML = (0, _Childs.default)(childrens);
+      });
+    }
+  });
+}
 
 function getAppContext() {
   return document.querySelector('#app');
 }
-},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childrens":"JS/components/Childrens.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childs":"JS/components/Childs.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -347,7 +440,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51368" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53668" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

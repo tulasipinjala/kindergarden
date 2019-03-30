@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Child {
 	
@@ -24,6 +26,7 @@ private String age;
 @ManyToOne
 private Parent parent;
 @ManyToMany
+@JsonIgnore
 private Collection<Teacher> teachers;
 
 public Child() {}

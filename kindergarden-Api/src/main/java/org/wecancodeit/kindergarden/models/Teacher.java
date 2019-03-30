@@ -19,7 +19,7 @@ public class Teacher {
 	private String subjectName;
 	private int studentsCount;
 	
-	@ManyToMany(mappedBy="teacher")
+	@ManyToMany(mappedBy="teachers")
 	private Collection<Child> childrens;
 	
 	public Teacher() {}

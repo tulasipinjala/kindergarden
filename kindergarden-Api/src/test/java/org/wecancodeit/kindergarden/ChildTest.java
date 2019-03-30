@@ -1,6 +1,7 @@
 package org.wecancodeit.kindergarden;
 
 import static org.hamcrest.Matchers.is;
+
 import static org.junit.Assert.assertThat;
 
 import javax.annotation.Resource;
@@ -34,7 +35,7 @@ public class ChildTest {
 		
 		@Test
 		public void shouldAddAndGetChild() {
-		Child child = childRepo.save(new Child("firstName", "lastName", "age", null));
+		Child child = childRepo.save(new Child("firstName", "lastName", "age"));
 		
 		entityManager.persist(child);
 		entityManager.flush();

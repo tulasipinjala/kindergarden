@@ -1,8 +1,8 @@
 import events from './utils/events/event-actions'
  import api from './utils/api/api-actions'
 import Parents from './components/Parents'
-// import Teachers from './components/Teachers'
-// import Childrens from './components/Childrens'
+import Teachers from './components/Teachers'
+import Childrens from './components/Childrens'
 
  main()
 

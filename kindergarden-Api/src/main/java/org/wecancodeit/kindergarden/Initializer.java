@@ -1,7 +1,5 @@
 package org.wecancodeit.kindergarden;
 
-
-
 import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
@@ -28,15 +26,30 @@ public class Initializer implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Teacher teacherOne = teacherRepo.save(new Teacher("Miss", "Gold", "science", 2));
-		Teacher teacherTwo = teacherRepo.save(new Teacher("Mr", "Edwards", "Art", 1));
-		childRepo.save(new Child("Cory", "Lesi", "5", teacherOne));
-		 childRepo.save(new Child("Jane", "Smith", "4", teacherTwo));
-		childRepo.save(new Child("Avi", "P", "3", teacherTwo));
 		
-		Parent parentOne = parentRepo.save(new Parent("Mary", "Lesi", "123-567-8900", "mary@gmail.com"));
-		Parent parentTwo = parentRepo.save(new Parent("Alex", "Smith", "122-567-8900", "alex@gmail.com"));
-		Parent parentThree = parentRepo.save(new Parent("Aaron", "P", "123-567-8800", "aaron@gmail.com"));
+		Teacher teacher1 = teacherRepo.save(new Teacher("Miss", "Gold", "science", 2));
+		Teacher teacher2 = teacherRepo.save(new Teacher("Mr", "Edwards", "Art", 1));
+		
+		Child child1= childRepo.save(new Child("Cory", "Lesi", "5"));
+		Child child2= childRepo.save(new Child("Jane", "Smith", "4"));
+		Child child3= childRepo.save(new Child("Avi", "P", "3"));
+		
+		Parent parent1 = parentRepo.save(new Parent("Mary", "Lesi", "123-567-8900", "mary@gmail.com"));
+		Parent parent2 = parentRepo.save(new Parent("Alex", "Smith", "122-567-8900", "alex@gmail.com"));
+		Parent parent3 = parentRepo.save(new Parent("Aaron", "P", "123-567-8800", "aaron@gmail.com"));
+		
+		child1.addParentToChild(parent1);
+		child2.addParentToChild(parent2);
+		child3.addParentToChild(parent3);
+		
+		child1.addTeacherToChild(teacher1);
+		child2.addTeacherToChild(teacher2);
+		child3.addTeacherToChild(teacher2);
+		
+		childRepo.save(child1);
+		childRepo.save(child2);
+		childRepo.save(child3);
+		
 		
 		
 		

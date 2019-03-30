@@ -117,209 +117,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"JS/utils/events/event-actions.js":[function(require,module,exports) {
-"use strict";
+})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-function on(element, eventType, callback) {
-  element.addEventListener(eventType, function (event) {
-    return callback(event);
-  });
+  return bundleURL;
 }
 
-var _default = {
-  on: on
-};
-exports.default = _default;
-},{}],"JS/utils/api/api-actions.js":[function(require,module,exports) {
-"use strict";
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
-function getRequest(location, callback) {
-  fetch(location).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
-} // function postRequest(location, requestBody, callback) {
-//     fetch(location, {
-//        method: "POST",
-//        body: JSON.stringify(requestBody)
-//     })
-//     .then(response => response.json())
-//     .then(data => callback(data))
-//     .catch(err => console.log(err))
-// }
-
-
-var _default = {
-  getRequest: getRequest // postRequest
-
-};
-exports.default = _default;
-},{}],"JS/components/Parents.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Parents;
-
-// import childrens from './Childs'
-function Parents(parents) {
-  return "";
-} // `
-//     <ul class="parents">
-//         ${parents.map(parent=> {
-//             return `
-//                 <h4 class="parent__parentName" id="${parent.id}">${parent.firstName} ${parent.lastName}</h4>
-//                 `;
-//             }).join('')}
-//     </ul>
-// `
-},{}],"JS/components/Teachers.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Teachers;
-
-// import'../../CSS/s.css'
-function Teachers(teachers) {
-  return "\n        <ul class=\"teachers\">\n            ".concat(teachers.map(function (teacher) {
-    return "\n                    <li class=\"teacher\">\n                        <h3 class=\"teacher__teacherName\" id=\"".concat(teacher.id, "\">").concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>                     \n                    </li>\n                    ");
-  }).join(''), "\n            </ul>\n            ");
+  return '/';
 }
-},{}],"JS/components/Childrens.js":[function(require,module,exports) {
-"use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Childrens;
-
-function Childrens(childrens) {
-  return "\n        <ul class=\"childrens\">\n            ".concat(childrens.map(function (children) {
-    return "\n                    <li class=\"children\">\n                        <h4 class=\"children__childrenName\" id=\"".concat(children.id, "\">").concat(children.firstName, " ").concat(children.lastName, "</h4>                      \n                    </li>\n                ");
-  }).join(''), "\n        </ul>\n    ");
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
 }
-},{}],"JS/app.js":[function(require,module,exports) {
-"use strict";
 
-var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-var _apiActions = _interopRequireDefault(require("./utils/api/api-actions"));
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-var _Parents = _interopRequireDefault(require("./components/Parents"));
+  newLink.onload = function () {
+    link.remove();
+  };
 
-var _Teachers = _interopRequireDefault(require("./components/Teachers"));
-
-var _Childrens = _interopRequireDefault(require("./components/Childrens"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-main();
-
-function main() {
-  _apiActions.default.getRequest('http://localhost:8080/parents', function (parents) {
-    getAppContext().innerHTML = (0, _Parents.default)(parents);
-  });
-} // 	navParent()
-// 	navTeacher()
-//     navChildren() 
-//     addParents()
-//     addTeachers()
-//     addChildrens()
-// }
-// function navParent() {
-// 	const parentButton = document.querySelector('.nav__parents');
-// 	events.on(parentButton, 'click', ()=> {
-// 		api.getRequest('/parents', parents => { 
-// 			getAppContext().innerHTML = Parents(parents)
-// 		})
-// 	})
-// }
-// function navTeacher() {
-// 	const teacherButton = document.querySelector('.nav__teachers');
-// 	events.on(teacherButton, 'click', ()=> {
-// 		api.getRequest('/teachers', teachers => { 
-// 			getAppContext().innerHTML = Teachers(teachers)
-// 		})
-// 	})
-// }
-// function navChildren() {
-// 	const childButton = document.querySelector('.nav__childrens');
-// 	events.on(childButton, 'click', ()=> {
-// 		api.getRequest('/childrens', childrens => { 
-// 			getAppContext().innerHTML = Childrens(childrens)
-// 		})
-// 	})
-// }
-// function addParents() {
-// 	events.on(getAppContext(), 'click', ()=> {
-// 		if(event.target.classList.contains('add__parent__button')) {
-// 			const firstName = document.querySelector('.add__firstName').value
-//             const lastName = document.querySelector('.add__lastName').value
-//             const phoneNumber = document.querySelector('.add__phoneNumber').value
-//             const email = document.querySelector('add__email').value
-// 			api.postRequest('/parents/add', {
-// 				firstName : firstName,
-//                 lastName : lastName,
-//                 phoneNumber : phoneNumber,
-//                 email: email
-// 			}, (parents) => getAppContext().innerHTML = Parents(parents))
-// 		}
-// 	})
-// }
-// function addTeachers() {
-// 	events.on(getAppContext(), 'click', ()=> {
-// 		if(event.target.classList.contains('add__teacher__button')) {
-// 			const firstName = document.querySelector('.add__firstName').value
-//             const lastName = document.querySelector('.add__lastName').value
-//             const subjectName = document.querySelector('.add__subjectName').value
-//             const studentsCount = document.querySelector('.add__studentsCount').value
-// 			api.postRequest('/teachers/add', {
-// 				firstName : firstName,
-//                 lastName : lastName,
-//                 subjectName :subjectName,
-//                 studentsCount:studentsCount
-// 			}, (teachers) => getAppContext().innerHTML = Teachers(teachers))
-// 		}
-// 	})
-// }
-// function addChildrens() {
-// 	events.on(getAppContext(), 'click', ()=> {
-// 		if(event.target.classList.contains('add__child__button')) {
-// 			const firstName = document.querySelector('.add__firstName').value
-//             const lastName = document.querySelector('.add__lastName').value
-//             const age = document.querySelector('.add__age').value
-//             const teacher = document.querySelector('.add__teacher').value
-// 			api.postRequest('/children/add', {
-// 				firstName : firstName,
-//                 lastName : lastName,
-//                 age : age,
-//                 teacher: teacher
-// 			}, (childrens) => getAppContext().innerHTML = Childrens(childrens))
-// 		}
-// 	})
-// }
-
-
-function getAppContext() {
-  return document.querySelector('#app');
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
 }
-},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childrens":"JS/components/Childrens.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -522,5 +387,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","JS/app.js"], null)
-//# sourceMappingURL=/app.c4e5fddc.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/index.js.map

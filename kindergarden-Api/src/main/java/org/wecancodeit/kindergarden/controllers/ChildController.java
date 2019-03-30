@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.kindergarden.models.Child;
 import org.wecancodeit.kindergarden.repositories.ChildRepository;
 
+
 @CrossOrigin
 @RestController
 public class ChildController {
@@ -38,7 +39,6 @@ public Collection<Child> addChild(@PathVariable Long id,@RequestBody String body
  String firstName = json.getString("firstName");
  String lastName = json.getString("lastName");
  String age = json.getString("age");
- String teacher = json.getString("teacher");
  Child childToAdd = childRepo.findById(id).get();
  childRepo.save(new Child());
  return (Collection<Child>) childRepo.findAll();

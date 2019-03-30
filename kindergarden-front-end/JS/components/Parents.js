@@ -1,7 +1,7 @@
 // import childrens from './Childs'
 
 export default function Parents(parents) {
-    return "Hello World"; 
+    return ""; 
 }  
     // `
     //     <ul class="parents">

@@ -50,7 +50,7 @@ public String getEmail() {
 	return email;
 }
 
-public Collection<Child> getChildren() {
+public Collection<Child> getChild() {
 	return childrens;
 }
 @Override

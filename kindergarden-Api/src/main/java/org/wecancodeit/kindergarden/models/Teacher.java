@@ -14,7 +14,6 @@ public class Teacher {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
 	private String firstName;
 	private String lastName;
 	private String subjectName;
@@ -22,6 +21,8 @@ public class Teacher {
 	
 	@ManyToMany(mappedBy="teacher")
 	private Collection<Child> childrens;
+	
+	public Teacher() {}
 	
 		
 	public Teacher(String firstName, String lastName, String subjectName, int studentsCount) {

@@ -151,24 +151,20 @@ function getRequest(location, callback) {
   }).catch(function (err) {
     return console.log(err);
   });
-}
+} // function postRequest(location, requestBody, callback) {
+//     fetch(location, {
+//        method: "POST",
+//        body: JSON.stringify(requestBody)
+//     })
+//     .then(response => response.json())
+//     .then(data => callback(data))
+//     .catch(err => console.log(err))
+// }
 
-function postRequest(location, requestBody, callback) {
-  fetch(location, {
-    method: "POST",
-    body: JSON.stringify(requestBody)
-  }).then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    return callback(data);
-  }).catch(function (err) {
-    return console.log(err);
-  });
-}
 
 var _default = {
-  getRequest: getRequest,
-  postRequest: postRequest
+  getRequest: getRequest // postRequest
+
 };
 exports.default = _default;
 },{}],"JS/components/Parents.js":[function(require,module,exports) {
@@ -322,7 +318,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55243" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

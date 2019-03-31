@@ -41,7 +41,7 @@ public class CommentController {
 		return commentRepo.findById(id).get();
 	}
 	
-	@PostMapping("/comments/add/{id}")
+	@PostMapping("/comments/add")
 	public Teacher addComment(@RequestBody String body) throws JSONException {
 		JSONObject newComment = new JSONObject(body);
 		String content = newComment.getString("commentContent");

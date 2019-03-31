@@ -64,6 +64,11 @@ public class Teacher {
 	public Collection<Comment> getComments() {
 		return comments;
 	}
+	
+	public void addCommentToTeacher(Comment comment) {
+		 comments.add(comment);
+	}
+
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", subjectName="

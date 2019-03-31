@@ -57,6 +57,9 @@ public class Initializer implements CommandLineRunner {
 		childRepo.save(child2);
 		childRepo.save(child3);
 		
+		teacher1.addCommentToTeacher(comment1);
+		teacher2.addCommentToTeacher(comment2);
+		
 
 	}
 

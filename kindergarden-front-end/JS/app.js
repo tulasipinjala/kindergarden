@@ -28,7 +28,7 @@ main()
 	viewSingleParent()
 	viewSingleChild()
 	viewSingleTeacher()
-	addComment()
+	addComments()
 	viewSingleComment()
 	updateComment()
 	deleteSingleComment()
@@ -102,15 +102,13 @@ function addTeachers() {
 		}
 	})
 }
-function addComment() {
+function addComments() {
 	events.on(getAppContext(), 'click', () => {
 	  if(event.target.classList.contains('add__comment__button')) {
-		const commentContent = event.target.parentElement.querySelector('.add__comment').value
-		const teacherId = event.target.parentElement.querySelector('.add__teacher').value
+		const content = document.querySelector('.add__comment').value
 		api.postRequest('http://localhost:8080/teachers/comments/add', {
-		  commentContent: commentContent,
-		  teacherId: teacherId
-		}, (teachers) => getAppContext().innerHTML = Teachers(teachers))
+		  content: content
+		}, (comments) => getAppContext().innerHTML = Comment(comments))
 	  }
 	})
   }

@@ -13,14 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.kindergarden.models.Child;
-import org.wecancodeit.kindergarden.models.Parent;
+import org.wecancodeit.kindergarden.models.Comment;
 import org.wecancodeit.kindergarden.models.Teacher;
+import org.wecancodeit.kindergarden.repositories.CommentRepository;
 import org.wecancodeit.kindergarden.repositories.TeacherRepository;
 @CrossOrigin
 @RestController
 public class TeacherController {
 	@Resource
 	TeacherRepository teacherRepo;
+	
+	@Resource
+	CommentRepository	commentRepo;
 	
 	@GetMapping("/teachers")
 	public Collection<Teacher> getTeachers() {
@@ -42,5 +46,24 @@ public class TeacherController {
 	 teacherRepo.save(new Teacher(firstName, lastName, subjectName, studentsCount));
 	 return (Collection<Teacher>) teacherRepo.findAll();
 	}
+	
+//	@PostMapping("/teachers/comments/add")
+//	public Teacher addComment(@PathVariable Long id, @RequestBody String body) throws JSONException {
+//		JSONObject newComment = new JSONObject(body);
+//		String content = newComment.getString("commentContent");
+//		Teacher teacher = teacherRepo.findById(Long.parseLong(newComment.getString("teacherId"))).get();
+//		commentRepo.save(new Comment(content, teacher));
+//		return teacher;
+//	}
+	
+	
+	@PostMapping("/teachers/comments/add")
+	public Collection<Comment> addComment(@PathVariable Long id, @RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String content = json.getString("content");
+		commentRepo.save(new Comment(content, teacherRepo.findById(id).get()));
+		return (Collection<Comment>) commentRepo.findAll();
+	}
+	
 	
 }

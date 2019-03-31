@@ -22,7 +22,7 @@ import org.wecancodeit.kindergarden.repositories.TeacherRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/comments")
+//@RequestMapping("/comments")
 
 public class CommentController {
 	
@@ -31,24 +31,39 @@ public class CommentController {
 	@Resource
 	TeacherRepository teacherRepo;
 	
-	@GetMapping("")
+	@GetMapping("/comments")
 	public Collection<Comment> getComments() {
 		return (Collection<Comment>)commentRepo.findAll();
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/comments/{id}")
 	public Comment viewSingleComment(@PathVariable Long id) {
 		return commentRepo.findById(id).get();
 	}
 	
+	
+	
+	
+//	@PostMapping("/comments/add")
+//	public Teacher addComment(@RequestBody String body) throws JSONException {
+//		JSONObject newComment = new JSONObject(body);
+//		String content = newComment.getString("commentContent");
+//		Teacher teacher = teacherRepo.findById(Long.parseLong(newComment.getString("teacherId"))).get();
+//		commentRepo.save(new Comment(content, teacher));
+//		return teacher;
+//	}
+//	
 	@PostMapping("/comments/add")
-	public Teacher addComment(@RequestBody String body) throws JSONException {
-		JSONObject newComment = new JSONObject(body);
-		String content = newComment.getString("commentContent");
-		Teacher teacher = teacherRepo.findById(Long.parseLong(newComment.getString("teacherId"))).get();
-		commentRepo.save(new Comment(content, teacher));
-		return teacher;
+	public Collection<Comment> addComment(@RequestBody String body) throws JSONException {
+		JSONObject json = new JSONObject(body);
+		String content = json.getString("content");
+		commentRepo.save(new Comment(content));
+		return (Collection<Comment>) commentRepo.findAll();
 	}
+	
+	
+
+	
 	
 	@PostMapping("/comments/update/{id}")
 	public Comment updateComment(@PathVariable Long id, @RequestBody String body) throws JSONException {

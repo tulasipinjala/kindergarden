@@ -57,11 +57,19 @@ public class TeacherController {
 //	}
 	
 	
+//	@PostMapping("/teachers/comments/add")
+//	public Collection<Comment> addComment(@PathVariable Long id, @RequestBody String body) throws JSONException {
+//		JSONObject json = new JSONObject(body);
+//		String content = json.getString("content");
+//		commentRepo.save(new Comment(content, teacherRepo.findById(id).get()));
+//		return (Collection<Comment>) commentRepo.findAll();
+//	}
+	
 	@PostMapping("/teachers/comments/add")
-	public Collection<Comment> addComment(@PathVariable Long id, @RequestBody String body) throws JSONException {
+	public Collection<Comment> addComment( @RequestBody String body) throws JSONException {
 		JSONObject json = new JSONObject(body);
 		String content = json.getString("content");
-		commentRepo.save(new Comment(content, teacherRepo.findById(id).get()));
+		commentRepo.save(new Comment(content));
 		return (Collection<Comment>) commentRepo.findAll();
 	}
 	

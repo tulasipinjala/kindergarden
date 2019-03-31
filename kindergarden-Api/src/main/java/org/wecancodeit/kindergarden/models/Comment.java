@@ -25,9 +25,11 @@ public class Comment {
 	}
 
 	public Comment(String content, Teacher teacher) {
-		super();
 		this.content = content;
 		this.teacher = teacher;
+	}
+	public Comment(String content) {
+		this.content = content;
 	}
 
 	public Long getId() {

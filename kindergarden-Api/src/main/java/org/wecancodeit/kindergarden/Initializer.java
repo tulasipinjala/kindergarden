@@ -34,7 +34,7 @@ public class Initializer implements CommandLineRunner {
 		Teacher teacher1 = teacherRepo.save(new Teacher("Miss", "Gold", "science", 2));
 		Teacher teacher2 = teacherRepo.save(new Teacher("Mr", "Edwards", "Art", 1));
 		
-		Comment comment1 = commentRepo.save(new Comment("nice teacher", teacher1));
+		Comment comment1 = commentRepo.save(new Comment("nice teacher"));
 		Comment comment2 = commentRepo.save(new Comment("cool teacher",teacher2));
 
 		Child child1 = childRepo.save(new Child("Cory", "Lesi", "5"));

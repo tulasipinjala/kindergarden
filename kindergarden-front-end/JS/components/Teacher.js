@@ -1,5 +1,6 @@
 import Childs from './Childs'
 import Comments from './Comments'
+import Comment from './Comment'
 
 
 export default function Teacher(teacher) {
@@ -20,7 +21,7 @@ export default function Teacher(teacher) {
 
         <section class="add__comment">
         <input type="text" class="add__content" placeholder="comment">
-            <button class="add__comment__button">Add Comment</button>
+            <button class="add__comment__button" id="${teacher.id}">Add Comment</button>
         </section>
 
     

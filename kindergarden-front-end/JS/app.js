@@ -63,7 +63,7 @@ function navChild() {
 function navComment() {
 	const commentButton = document.querySelector('.nav__comments');
 	events.on(commentButton, 'click', ()=> {
-		api.getRequest('http://localhost:8080/childrens', comments => { 
+		api.getRequest('http://localhost:8080/comments', comments => { 
 			getAppContext().innerHTML = Comments(comments)
 		})
 	})
@@ -93,7 +93,8 @@ function addTeachers() {
             const lastName = document.querySelector('.add__lastName').value
             const subjectName = document.querySelector('.add__subjectName').value
             const studentsCount = document.querySelector('.add__studentsCount').value
-			api.postRequest('http://localhost:8080/teachers/add', {
+			api.postRequest('http://localhost:8080/teachers/add',
+			 {
 				firstName : firstName,
                 lastName : lastName,
                 subjectName :subjectName,
@@ -105,11 +106,11 @@ function addTeachers() {
 function addComments() {
 	events.on(getAppContext(), 'click', () => {
 	  if(event.target.classList.contains('add__comment__button')) {
-		const content = document.querySelector('.add__comment').value
+		const content = document.querySelector('.add__content').value
 		api.postRequest('http://localhost:8080/teachers/comments/add', {
 		  content: content
-		}, (comments) => getAppContext().innerHTML = Comment(comments))
-	  }
+		}, (comments) => getAppContext().innerHTML = Comments(comments))
+	  }	 
 	})
   }
 function addChildrens() {
@@ -156,8 +157,8 @@ function viewSingleTeacher() {
 } 
   function viewSingleComment() {
 	  events.on(getAppContext(), 'click', () => {
-		  if(event.target.classList.contains('comment__commentContent')) {
-			  api.getRequest(`http://localhost:8080/teachers/comments/${event.target.id}`, comment => {
+		  if(event.target.classList.contains('comment__content')) {
+			  api.getRequest(`http://localhost:8080/comments/${event.target.id}`, comment => {
 				  getAppContext().innerHTML = Comment(comment)
 			  })
 		  }
@@ -166,7 +167,7 @@ function viewSingleTeacher() {
   
   function updateComment() {
 	events.on(getAppContext(), 'click', () => {
-	  if(event.target.classList.contains('update__comment')) {
+	  if(event.target.classList.contains('update__comment__button')) {
 		const newContent = event.target.parentElement.querySelector('.update__comment').value
 		api.postRequest(`http://localhost:8080/comments/update/${event.target.id}`, {
 		  newContent: newContent,
@@ -177,7 +178,7 @@ function viewSingleTeacher() {
   
   function deleteSingleComment() {
 	events.on(getAppContext(), 'click', () => {
-		  if(event.target.classList.contains('delete__teacher')) {
+		  if(event.target.classList.contains('delete__comment__button')) {
 		api.deleteRequest(`http://localhost:8080/comments/delete/${event.target.id}`, teacher => {
 				  getAppContext().innerHTML = Teacher(teacher)
 		})

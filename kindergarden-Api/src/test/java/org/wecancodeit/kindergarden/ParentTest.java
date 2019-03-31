@@ -18,20 +18,20 @@ import org.wecancodeit.kindergarden.repositories.ParentRepository;
 @DataJpaTest
 
 public class ParentTest {
-	
+
 	@Resource
 	private TestEntityManager entityManager;
-	
+
 	@Resource
 	ParentRepository parentRepo;
-	
+
 	@Resource
 	ChildRepository childRepo;
-	
+
 	@Test
 	public void shouldAddAndGetParent() {
 
-		Parent parent = parentRepo.save(new Parent("firstName", "lastName", "PhoneNumber","email"));
+		Parent parent = parentRepo.save(new Parent("firstName", "lastName", "PhoneNumber", "email"));
 
 		entityManager.persist(parent);
 		entityManager.flush();
@@ -39,10 +39,7 @@ public class ParentTest {
 
 		Long idToFind = 1L;
 		Parent parentFromDB = parentRepo.findById(idToFind).get();
-
 		assertThat(parentFromDB.getFirstName(), is("firstName"));
 	}
-	
-
 
 }

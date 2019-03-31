@@ -1,7 +1,6 @@
 package org.wecancodeit.kindergarden;
 
 import static org.hamcrest.Matchers.is;
-
 import static org.junit.Assert.assertThat;
 
 import javax.annotation.Resource;
@@ -20,30 +19,29 @@ import org.wecancodeit.kindergarden.repositories.TeacherRepository;
 @DataJpaTest
 
 public class ChildTest {
-	
-		@Resource
-		private TestEntityManager entityManager;
-		
-		@Resource
-		ChildRepository childRepo;
-		
-		@Resource
-		ParentRepository parentRepo;
-		
-		@Resource
-		TeacherRepository teacherRepo;
-		
-		@Test
-		public void shouldAddAndGetChild() {
+
+	@Resource
+	private TestEntityManager entityManager;
+
+	@Resource
+	ChildRepository childRepo;
+
+	@Resource
+	ParentRepository parentRepo;
+
+	@Resource
+	TeacherRepository teacherRepo;
+
+	@Test
+	public void shouldAddAndGetChild() {
 		Child child = childRepo.save(new Child("firstName", "lastName", "age"));
-		
+
 		entityManager.persist(child);
 		entityManager.flush();
 		entityManager.clear();
-		
+
 		Long idToFind = 1L;
 		Child childFromDB = childRepo.findById(idToFind).get();
-		
 		assertThat(childFromDB.getFirstName(), is("firstName"));
 	}
 

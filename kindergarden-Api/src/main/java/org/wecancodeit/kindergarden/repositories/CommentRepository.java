@@ -7,6 +7,5 @@ import org.wecancodeit.kindergarden.models.Comment;
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-	
 	Comment findByContent(String string);
 }

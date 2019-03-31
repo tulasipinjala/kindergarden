@@ -15,18 +15,6 @@ export default function Teacher(teacher) {
          
         <li class="children">${Childs(teacher.child)}</li>
     </ul>
-
-        
-
-        <section class="add__comment">
-        <h3>Comments</h3>
-        
-        <input type="text" class="add__content" placeholder="comment">
-            <button class="add__comment__button" id="${teacher.id}">Add Comment</button>
-        </section>
-
-    
-
-    </div>
+     </div>
             `
 }       

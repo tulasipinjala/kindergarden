@@ -12,10 +12,10 @@ import org.wecancodeit.kindergarden.controllers.ParentController;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ParentControllerTest {
-	
+
 	@Autowired
 	private ParentController testParentController;
-	
+
 	@Test
 	public void contextLoads() throws Exception {
 		assertThat(testParentController).isNotNull();

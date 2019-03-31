@@ -15,12 +15,10 @@ public class TeacherControllerTest {
 
 	@Autowired
 	private TeacherController testTeacherController;
-	
+
 	@Test
 	public void contextLoads() throws Exception {
 		assertThat(testTeacherController).isNotNull();
 	}
 
 }
-
-

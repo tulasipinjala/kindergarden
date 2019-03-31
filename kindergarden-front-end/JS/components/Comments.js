@@ -21,6 +21,8 @@
 
     export default function Comments(comments) {
       return `
+      <div class = "comments__list"> 
+        <h1>Comments</h1>
           <ul class="comments">
               ${comments.map(comment => {
           return `

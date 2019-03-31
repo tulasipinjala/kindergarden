@@ -2,6 +2,9 @@ import'../../CSS/index.css'
 
 export default function Teachers(teachers) {
     return `
+      
+       <div class = "teacher__list"> 
+       <h1>Teachers</h1>
         <ul class="teachers">
             ${teachers.map(teacher => {
         return `
@@ -18,6 +21,7 @@ export default function Teachers(teachers) {
             <input type="text" class="add__subjectName" placeholder="subject name">
             <input type="text" class="add__studentsCount" placeholder="number of students">
             <button class="add__teacher__button">Add Teacher</button>
-        </section> 
+        </section>
+        </div> 
             `
 }

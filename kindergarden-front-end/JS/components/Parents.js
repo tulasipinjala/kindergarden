@@ -1,7 +1,9 @@
  import add from './add'
 export default function Parents(parents) {
     return `
+    <div class = "parent__list"> 
         <ul class="parents">
+        <h1>Parents</h1>
             ${parents.map(parent => {
         return `
                     <li class="parent">
@@ -19,5 +21,6 @@ export default function Parents(parents) {
             <input type="text" class="add__email" placeholder="email">
             <button class="add__parent__button">Add Parent</button>
         </section> 
+        </div>
     `
 }

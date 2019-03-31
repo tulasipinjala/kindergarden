@@ -1,5 +1,8 @@
 export default function Childrens(childrens) {
     return `
+   
+    <div class = "children__list"> 
+    <h1>Children</h1>
         <ul class="childrens">
             ${childrens.map(children => {
         return `
@@ -15,7 +18,7 @@ export default function Childrens(childrens) {
             <input type="text" class="add__firstName" placeholder="first name">
             <input type="text" class="add__lastName" placeholder="last name">
             <input type="text" class="add__age" placeholder="age">
-            <input type="text" class="add__teacher" placeholder="teacher">
+            <input type="text" class="add___teacher" placeholder="teacher">
             <button class="add__child__button">Add Child</button>
         </section> 
     `

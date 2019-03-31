@@ -1,7 +1,11 @@
 * {
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0;
+  padding: 0;
+  list-style-type: none;
+}
+html{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 /* .bg__image{
@@ -13,14 +17,15 @@
   position: relative;
 } */
 
-  /* header{
+  header{
     overflow: hidden;
     background-color: rgb(65, 179, 74);
     position: fixed;
     top: 0; 
     width: 100%;
     padding-bottom: 1rem; 
-} */
+   
+}
 .title{
     display: flex;
     justify-content: center;
@@ -59,15 +64,231 @@
 	justify-content: center;
 	padding-right:30%;
 } */
-main {
-  margin-top: 20rem;
+html {
+  margin-top: 4rem;
+  background-image:url(https://www.gannett-cdn.com/presto/2018/10/19/PBRE/d25f200a-77c7-444b-aa43-30ef0e8158e5-Books.jpg?crop=2459,1386,x0,y272&width=3200&height=1680&fit=bounds);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-.parents{
+.parent__list{
   display:flex;
   flex-direction: column;
-  background-color: gray;
+  background-color:rgba(47, 149, 207, 0.8);
+
+  border: 2px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 34px;
+  margin-top: 10rem;
+  list-style-type: none;
+  border-radius: 13px;
+}
+.parent__name{
+  list-style-type: none;
+}
+
+.add__parent{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+ padding: 1rem;
+  font-size: 34px;
+  margin-top:2rem;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+ 
+}
+.parent__parentName{
+  display:flex;
+  flex-direction: column;
+  justify-items: center;
 
 }
 #app {
   width: minmax(300px, 50wh);
+}
+.parent__container{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 6px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  font-size: 34px;
+  margin-top: 10rem;
+
+  
+}
+.teacher__container{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 6px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 10rem;
+  padding-bottom: 4rem;
+  font-size: 34px;
+  margin-top: 10rem;
+}
+.teacher__list{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 2px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 34px;
+  margin-top: 10rem;
+  list-style-type: none;
+  border-radius: 13px;
+}
+.add__teacher{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+ padding: 1rem;
+  font-size: 34px;
+  margin-top:2rem;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+ 
+}
+
+.child__container{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 6px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-size: 34px;
+  margin-top: 10rem;
+}
+.children__list{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 2px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 34px;
+  margin-top: 10rem;
+  list-style-type: none;
+  border-radius: 13px;
+}
+
+.add__child{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+ padding: 1rem;
+  font-size: 34px;
+  margin-top:2rem;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+ 
+}
+
+.comment__container{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 6px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 10rem;
+  padding-bottom: 4rem;
+  font-size: 34px;
+  margin-top: 10rem;
+}
+
+.comments__list{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  border: 2px solid lightgray;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  font-size: 34px;
+  margin-top: 10rem;
+  list-style-type: none;
+  border-radius: 13px;
+}
+.add__comment{
+  display:flex;
+  flex-direction: column;
+  background-color:rgba(47, 149, 207, 0.8);
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8rem;
+  margin-right: 8rem;
+ padding: 1rem;
+  font-size: 34px;
+  margin-top:2rem;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+ 
+}
+
+footer{
+  overflow: hidden;
+  background-color: rgb(65, 179, 74);
+  position: fixed;
+  bottom: 0; 
+  width: 100%;
+  padding-bottom: 1rem; 
+ 
 }

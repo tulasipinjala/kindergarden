@@ -76,11 +76,11 @@ public class CommentController {
 	}
 	
 	@DeleteMapping("/comments/delete/{id}")
-	public Teacher deleteComment(@PathVariable Long id) {
+	public void deleteComment(@PathVariable Long id) {
 		Comment commentToDelete = commentRepo.findById(id).get();
 		Teacher teacher = commentToDelete.getTeacher();
 		commentRepo.delete(commentToDelete);
-		return teacher;
+		
 	}
 
 }

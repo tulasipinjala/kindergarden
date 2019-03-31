@@ -8,7 +8,7 @@ export default function Comment(comment) {
        
             <button class="add__comment__button" id="${comment.id}">Add Comment</button>
         </section>
-    </div>
+    
 
 
     <p class="single-comment__content">${comment.newContent}</p>
@@ -20,7 +20,7 @@ export default function Comment(comment) {
     <section class="delete__comment">
         <button class="delete__comment__button" id="${comment.id}">Delete Comment</button>
     </section>
-    
+    </div>
 
     
             `

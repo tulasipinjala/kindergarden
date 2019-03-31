@@ -3,22 +3,31 @@ import events from './utils/events/event-actions'
 import Parents from './components/Parents'
 import Teachers from './components/Teachers'
 import Childrens from './components/Childs'
-import Add from './components/add'
+import Parent from './components/Parent'
+import Child from './components/Child'
+import Teacher from './components/Teacher'
 
- main()
 
-function main() {
- 	api.getRequest('http://localhost:8080/parents', parents => {
-		 getAppContext().innerHTML = Parents(parents)
+main()
+
+
+	 function main() {
+		  api.getRequest('http://localhost:8080/parents', parents => {
+			  getAppContext().innerHTML 
+			  
+	 })
 		 
-})
+
 
 	navParent()
 	navTeacher()
     navChild() 
     addParents()
     addTeachers()
-    addChildrens()
+	addChildrens()
+	viewSingleParent()
+	viewSingleChild()
+	viewSingleTeacher()
 }
 
 function navParent() {
@@ -86,16 +95,46 @@ function addChildrens() {
 			const firstName = document.querySelector('.add__firstName').value
             const lastName = document.querySelector('.add__lastName').value
             const age = document.querySelector('.add__age').value
-            const teacher = document.querySelector('.add__teacher').value
 			api.postRequest('http://localhost:8080/childrens/add', {
 				firstName : firstName,
                 lastName : lastName,
                 age : age,
-                teacher: teacher
 			}, (childrens) => getAppContext().innerHTML = Childrens(childrens))
 		}
 	})
 }
+
+function viewSingleParent() {
+	events.on(getAppContext(), 'click', () => {
+		if(event.target.classList.contains('parent__parentName')) {
+			api.getRequest(`http://localhost:8080/parents/ ${event.target.id}`, parent => {
+				getAppContext().innerHTML = Parent(parent)
+			})
+		}
+	})
+}
+function viewSingleChild() {
+	events.on(getAppContext(), 'click', () => {
+		console.log("did this work?1")
+		if(event.target.classList.contains('children__childrenName')) {
+			console.log("did this work?2")
+			api.getRequest(`http://localhost:8080/childrens/ ${event.target.id}`, child => {
+				console.log("did this work?3")
+				getAppContext().innerHTML = Child(child)
+			})
+		}
+	})
+}
+function viewSingleTeacher() {
+	events.on(getAppContext(), 'click', () => {
+		if(event.target.classList.contains('teacher__teacherName')) {
+			api.getRequest(`http://localhost:8080/teachers/ ${event.target.id}`, teacher => {
+				getAppContext().innerHTML = Teacher(teacher)
+			})
+		}
+	})
+}
+
 function getAppContext() {
 	return document.querySelector('#app');
  }

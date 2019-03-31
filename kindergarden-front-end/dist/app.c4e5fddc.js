@@ -224,7 +224,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Parents(parents) {
   return "\n        <ul class=\"parents\">\n            ".concat(parents.map(function (parent) {
     return "\n                    <li class=\"parent\">\n                        <h4 class=\"parent__parentName\" id=\"".concat(parent.id, "\">").concat(parent.firstName, " ").concat(parent.lastName, "</h4>                      \n                    </li>\n                ");
-  }).join(''), "\n        </ul>\n        <section class=\"add__parent\">\n        <h3>Add Parent</h3>\n        \n            <input type=\"select\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"select\" class=\"add__phoneNumber\" placeholder=\"phone number\">\n            <input type=\"text\" class=\"add__email\" placeholder=\"email\">\n            <button class=\"add__parent__button\">Add Parent</button>\n        </section> \n    ");
+  }).join(''), "\n        </ul>\n        <section class=\"add__parent\">\n        <h3>Add Parent</h3>\n        \n            <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"select\" class=\"add__phoneNumber\" placeholder=\"phone number\">\n            <input type=\"text\" class=\"add__email\" placeholder=\"email\">\n            <button class=\"add__parent__button\">Add Parent</button>\n        </section> \n    ");
 }
 },{"./add":"JS/components/add.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
@@ -326,7 +326,48 @@ function Childrens(childrens) {
     return "\n                    <li class=\"children\">\n                        <h4 class=\"children__childrenName\" id=\"".concat(children.id, "\">").concat(children.firstName, " ").concat(children.lastName, "</h4>                      \n                    </li>\n                ");
   }).join(''), "\n        </ul>\n        <section class=\"add__child\">\n        <h3>Add Child</h3>\n        \n            <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n            <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n            <input type=\"text\" class=\"add__age\" placeholder=\"age\">\n            <input type=\"text\" class=\"add__teacher\" placeholder=\"teacher\">\n            <button class=\"add__child__button\">Add Child</button>\n        </section> \n    ");
 }
-},{}],"JS/app.js":[function(require,module,exports) {
+},{}],"JS/components/Parent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Parent;
+
+var _Childs = _interopRequireDefault(require("./Childs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Parent(parent) {
+  return "\n    <div class=\"parent__container\">\n        <h3 class=\"parent__parentName name\">Parent: ".concat(parent.firstName, " ").concat(parent.lastName, "</h3>\n        <h4 class=\"parent__parentPhoneNumber phone\">Phone: ").concat(parent.phoneNumber, "</h4>\n        <h4 class=\"parent__parentEmail email\">e-mail: ").concat(parent.email, "</h4>\n \n        \n\n        <section class=\"add__child\">\n        <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n        <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n        <input type=\"select\" class=\"add__age\" placeholder=\"age\">\n            <button class=\"add__child__button\" id=\"").concat(parent.id, "\">Add Child</button>\n        </section>\n    </div>\n            ");
+}
+},{"./Childs":"JS/components/Childs.js"}],"JS/components/Child.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Child;
+
+function Child(child) {
+  return "\n    <div class=\"parent__container\">\n        <h3 class=\"children__childrenName name\">Child: ".concat(child.firstName, " ").concat(child.lastName, "</h3>\n        <h4 class=\"child__childAge age\">Age: ").concat(child.age, "</h4>\n\n        \n    </div>\n            ");
+}
+},{}],"JS/components/Teacher.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Teacher;
+
+var _Childs = _interopRequireDefault(require("./Childs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Teacher(teacher) {
+  return "\n    <div class=\"teacher__container\">\n        <h3 class=\"teacher__teacherName name\">Teacher: ".concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>\n        <h4 class=\"teacher__teacherSubjectName Subject\">Subject: ").concat(teacher.subjectName, "</h4>\n        <h4 class=\"teacher__teacherStudentsCount email\">Number of Students: ").concat(teacher.studentsCount, "</h4>\n \n        \n\n        <section class=\"add__child\">\n        <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n        <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n        <input type=\"text\" class=\"add__age\" placeholder=\"age\">\n            <button class=\"add__child__button\" id=\"").concat(teacher.id, "\">Add Student</button>\n        </section>\n    </div>\n            ");
+}
+},{"./Childs":"JS/components/Childs.js"}],"JS/app.js":[function(require,module,exports) {
 "use strict";
 
 var _eventActions = _interopRequireDefault(require("./utils/events/event-actions"));
@@ -339,7 +380,11 @@ var _Teachers = _interopRequireDefault(require("./components/Teachers"));
 
 var _Childs = _interopRequireDefault(require("./components/Childs"));
 
-var _add = _interopRequireDefault(require("./components/add"));
+var _Parent = _interopRequireDefault(require("./components/Parent"));
+
+var _Child = _interopRequireDefault(require("./components/Child"));
+
+var _Teacher = _interopRequireDefault(require("./components/Teacher"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -347,7 +392,7 @@ main();
 
 function main() {
   _apiActions.default.getRequest('http://localhost:8080/parents', function (parents) {
-    getAppContext().innerHTML = (0, _Parents.default)(parents);
+    getAppContext().innerHTML;
   });
 
   navParent();
@@ -356,6 +401,9 @@ function main() {
   addParents();
   addTeachers();
   addChildrens();
+  viewSingleParent();
+  viewSingleChild();
+  viewSingleTeacher();
 }
 
 function navParent() {
@@ -434,15 +482,48 @@ function addChildrens() {
       var firstName = document.querySelector('.add__firstName').value;
       var lastName = document.querySelector('.add__lastName').value;
       var age = document.querySelector('.add__age').value;
-      var teacher = document.querySelector('.add__teacher').value;
 
       _apiActions.default.postRequest('http://localhost:8080/childrens/add', {
         firstName: firstName,
         lastName: lastName,
-        age: age,
-        teacher: teacher
+        age: age
       }, function (childrens) {
         return getAppContext().innerHTML = (0, _Childs.default)(childrens);
+      });
+    }
+  });
+}
+
+function viewSingleParent() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('parent__parentName')) {
+      _apiActions.default.getRequest("http://localhost:8080/parents/ ".concat(event.target.id), function (parent) {
+        getAppContext().innerHTML = (0, _Parent.default)(parent);
+      });
+    }
+  });
+}
+
+function viewSingleChild() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    console.log("did this work?1");
+
+    if (event.target.classList.contains('children__childrenName')) {
+      console.log("did this work?2");
+
+      _apiActions.default.getRequest("http://localhost:8080/childrens/ ".concat(event.target.id), function (child) {
+        console.log("did this work?3");
+        getAppContext().innerHTML = (0, _Child.default)(child);
+      });
+    }
+  });
+}
+
+function viewSingleTeacher() {
+  _eventActions.default.on(getAppContext(), 'click', function () {
+    if (event.target.classList.contains('teacher__teacherName')) {
+      _apiActions.default.getRequest("http://localhost:8080/teachers/ ".concat(event.target.id), function (teacher) {
+        getAppContext().innerHTML = (0, _Teacher.default)(teacher);
       });
     }
   });
@@ -451,7 +532,7 @@ function addChildrens() {
 function getAppContext() {
   return document.querySelector('#app');
 }
-},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childs":"JS/components/Childs.js","./components/add":"JS/components/add.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./utils/events/event-actions":"JS/utils/events/event-actions.js","./utils/api/api-actions":"JS/utils/api/api-actions.js","./components/Parents":"JS/components/Parents.js","./components/Teachers":"JS/components/Teachers.js","./components/Childs":"JS/components/Childs.js","./components/Parent":"JS/components/Parent.js","./components/Child":"JS/components/Child.js","./components/Teacher":"JS/components/Teacher.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -479,7 +560,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49985" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57544" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

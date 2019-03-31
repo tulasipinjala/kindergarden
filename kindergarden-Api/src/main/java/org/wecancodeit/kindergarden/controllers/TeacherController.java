@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.wecancodeit.kindergarden.models.Child;
+import org.wecancodeit.kindergarden.models.Parent;
 import org.wecancodeit.kindergarden.models.Teacher;
 import org.wecancodeit.kindergarden.repositories.TeacherRepository;
 @CrossOrigin
@@ -26,6 +27,10 @@ public class TeacherController {
 		return (Collection<Teacher>) teacherRepo.findAll();
 	}
 	
+	@GetMapping("/teachers/{id}")
+	public Teacher getTeacher(@PathVariable Long id) {
+		return teacherRepo.findById(id).get(); 
+	}
 	
 //	@PostMapping("/teachers/add")
 //	public Teacher addTeacher(@PathVariable Long id, @RequestBody String body) throws JSONException {

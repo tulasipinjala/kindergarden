@@ -26,6 +26,10 @@ public class ParentController {
 	public Collection<Parent> getParents() {
 		return(Collection<Parent>) parentRepo.findAll();
 	}
+	@GetMapping("/parents/{id}")
+	public Parent getParent(@PathVariable Long id) {
+		return parentRepo.findById(id).get(); 
+	}
 	
 	//@PostMapping("/parents/add/{id}")
 //	@PostMapping("/parents/add")

@@ -52,11 +52,15 @@ public class Teacher {
 		return studentsCount;
 	}
 	
+	public Collection<Child> getChildrens() {
+		return childrens;
+	}
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", subjectName="
 				+ subjectName + ", studentsCount=" + studentsCount + ", childrens=" + childrens + "]";
 	}
-	
+
+
 
 }

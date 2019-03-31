@@ -11,10 +11,10 @@ export default function Comment(comment) {
     
 
 
-    <p class="single-comment__content">${comment.newContent}</p>
+    <p class="comment__content">${comment.content}</p>
     <section class="update__comment">
         <h3>Update Comment</h3>
-        <input type="text" class="update__comment--content" placeholder="${comment.content}">
+        <input type="text" class="update__comment" placeholder="${comment.newContent}">
         <button class="update__comment__button" id="${comment.id}">Update Comment</button>
     </section> 
     <section class="delete__comment">

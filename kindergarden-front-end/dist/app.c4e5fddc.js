@@ -335,24 +335,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Comments;
 
-// export default function Comments(comments) {
-//     return `
-//       <ul class="comments">
-//       ${comments.map(comment => {
-//         return `
-//           <li class="comment">
-//               <h3 class="comment__content" id="${comment.id}">${comment.content}</h3>
-//         </li>
-//       `;
-//     }).join('')}
-//     </ul>
-//     <section class="add__comment">
-//         <h3>Add A Comment</h3>
-//         <input type="text" class="add__content" placeholder="Type your comment here">
-//         <button class="add__comment__button">Add Comment</button>
-//     </section> 
-//         `
-//     }
 function Comments(comments) {
   return "\n      <div class = \"comments__list\"> \n        <h1>Comments</h1>\n          <ul class=\"comments\">\n              ".concat(comments.map(function (comment) {
     return "\n                      <li class=\"comment\">\n                          <h4 class=\"comment__content\" id=\"".concat(comment.id, "\">").concat(comment.content, "</h4>                      \n                      </li>\n                  ");
@@ -393,7 +375,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Comment;
 
 function Comment(comment) {
-  return "\n\n    <div class=\"comment__container\">\n        <h3 class=\"comment__content content\">Comment: ".concat(comment.content, "</h3>\n        <section class=\"add__comment\">\n        <input type=\"text\" class=\"add__content\" placeholder=\"comment\">\n       \n            <button class=\"add__comment__button\" id=\"").concat(comment.id, "\">Add Comment</button>\n        </section>\n    \n\n\n    <p class=\"single-comment__content\">").concat(comment.newContent, "</p>\n    <section class=\"update__comment\">\n        <h3>Update Comment</h3>\n        <input type=\"text\" class=\"update__comment--content\" placeholder=\"").concat(comment.content, "\">\n        <button class=\"update__comment__button\" id=\"").concat(comment.id, "\">Update Comment</button>\n    </section> \n    <section class=\"delete__comment\">\n        <button class=\"delete__comment__button\" id=\"").concat(comment.id, "\">Delete Comment</button>\n    </section>\n    </div>\n\n    \n            ");
+  return "\n\n    <div class=\"comment__container\">\n        <h3 class=\"comment__content content\">Comment: ".concat(comment.content, "</h3>\n        <section class=\"add__comment\">\n        <input type=\"text\" class=\"add__content\" placeholder=\"comment\">\n       \n            <button class=\"add__comment__button\" id=\"").concat(comment.id, "\">Add Comment</button>\n        </section>\n    \n\n\n    <p class=\"comment__content\">").concat(comment.content, "</p>\n    <section class=\"update__comment\">\n        <h3>Update Comment</h3>\n        <input type=\"text\" class=\"update__comment\" placeholder=\"").concat(comment.newContent, "\">\n        <button class=\"update__comment__button\" id=\"").concat(comment.id, "\">Update Comment</button>\n    </section> \n    <section class=\"delete__comment\">\n        <button class=\"delete__comment__button\" id=\"").concat(comment.id, "\">Delete Comment</button>\n    </section>\n    </div>\n\n    \n            ");
 }
 },{}],"JS/components/Teacher.js":[function(require,module,exports) {
 "use strict";
@@ -412,7 +394,7 @@ var _Comment = _interopRequireDefault(require("./Comment"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Teacher(teacher) {
-  return "\n    <div class=\"teacher__container\">\n        <h3 class=\"teacher__teacherName name\">Teacher: ".concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>\n        <h4 class=\"teacher__teacherSubjectName Subject\">Subject: ").concat(teacher.subjectName, "</h4>\n        <h4 class=\"teacher__teacherStudentsCount email\">Number of Students: ").concat(teacher.studentsCount, "</h4>\n        <h4 class=\"teacher__teacherComment>Comment: ").concat(_Comments.default.content, "</h4>\n       \n        <ul class=\"children\">\n         \n        <li class=\"children\">").concat((0, _Childs.default)(teacher.child), "</li>\n    </ul>\n\n        \n\n        <section class=\"add__comment\">\n        <input type=\"text\" class=\"add__content\" placeholder=\"comment\">\n            <button class=\"add__comment__button\" id=\"").concat(teacher.id, "\">Add Comment</button>\n        </section>\n\n    \n\n    </div>\n            ");
+  return "\n    <div class=\"teacher__container\">\n        <h3 class=\"teacher__teacherName name\">Teacher: ".concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>\n        <h4 class=\"teacher__teacherSubjectName Subject\">Subject: ").concat(teacher.subjectName, "</h4>\n        <h4 class=\"teacher__teacherStudentsCount email\">Number of Students: ").concat(teacher.studentsCount, "</h4>\n        \n       \n        <ul class=\"children\">\n         \n        <li class=\"children\">").concat((0, _Childs.default)(teacher.child), "</li>\n    </ul>\n\n        \n\n        <section class=\"add__comment\">\n        <h3>Comments</h3>\n        \n        <input type=\"text\" class=\"add__content\" placeholder=\"comment\">\n            <button class=\"add__comment__button\" id=\"").concat(teacher.id, "\">Add Comment</button>\n        </section>\n\n    \n\n    </div>\n            ");
 }
 },{"./Childs":"JS/components/Childs.js","./Comments":"JS/components/Comments.js","./Comment":"JS/components/Comment.js"}],"JS/app.js":[function(require,module,exports) {
 "use strict";
@@ -669,7 +651,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54666" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56179" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -9,7 +9,7 @@ export default function Teacher(teacher) {
         <h3 class="teacher__teacherName name">Teacher: ${teacher.firstName} ${teacher.lastName}</h3>
         <h4 class="teacher__teacherSubjectName Subject">Subject: ${teacher.subjectName}</h4>
         <h4 class="teacher__teacherStudentsCount email">Number of Students: ${teacher.studentsCount}</h4>
-        <h4 class="teacher__teacherComment>Comment: ${Comments.content}</h4>
+        
        
         <ul class="children">
          
@@ -19,6 +19,8 @@ export default function Teacher(teacher) {
         
 
         <section class="add__comment">
+        <h3>Comments</h3>
+        
         <input type="text" class="add__content" placeholder="comment">
             <button class="add__comment__button" id="${teacher.id}">Add Comment</button>
         </section>

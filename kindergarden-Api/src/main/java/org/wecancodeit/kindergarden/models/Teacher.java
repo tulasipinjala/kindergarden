@@ -24,7 +24,7 @@ public class Teacher {
 	@JsonIgnore
 	@ManyToMany(mappedBy="teachers")
 	private Collection<Child> childrens;
-	@JsonIgnore
+
 	@OneToMany(mappedBy="teacher")
 	private Collection<Comment> comments;
 	

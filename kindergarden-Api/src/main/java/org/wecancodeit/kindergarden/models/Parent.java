@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Parent {
 
@@ -19,11 +21,11 @@ private String lastName;
 private String phoneNumber;
 private String email;
 
-@OneToMany(mappedBy = "parent")
-private Collection<Child> children;
+@OneToMany(mappedBy ="parent")
+@JsonIgnore
+private Collection<Child> childrens;
 
 public Parent() {}
-
 
 public Parent(String firstName, String lastName, String phoneNumber, String email) {
 	this.firstName = firstName;
@@ -50,13 +52,13 @@ public String getEmail() {
 	return email;
 }
 
-public Collection<Child> getChildren() {
-	return children;
+public Collection<Child> getChild() {
+	return childrens;
 }
 @Override
 public String toString() {
 	return "Parent [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
-			+ ", email=" + email + ", children=" + children + "]";
+			+ ", email=" + email + ", children=" + childrens + "]";
 }
 	
 }

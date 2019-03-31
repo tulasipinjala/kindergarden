@@ -1,4 +1,5 @@
 import Childs from './Childs'
+import Comments from './Comments'
 
 
 export default function Teacher(teacher) {
@@ -7,8 +8,8 @@ export default function Teacher(teacher) {
         <h3 class="teacher__teacherName name">Teacher: ${teacher.firstName} ${teacher.lastName}</h3>
         <h4 class="teacher__teacherSubjectName Subject">Subject: ${teacher.subjectName}</h4>
         <h4 class="teacher__teacherStudentsCount email">Number of Students: ${teacher.studentsCount}</h4>
- 
-        
+         <h4 class="teacher__teacherComment>Comment: ${Comments(teacher.comments)}</h4>
+       
 
         <section class="add__child">
         <input type="text" class="add__firstName" placeholder="first name">

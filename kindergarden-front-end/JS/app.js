@@ -3,10 +3,11 @@ import events from './utils/events/event-actions'
 import Parents from './components/Parents'
 import Teachers from './components/Teachers'
 import Childrens from './components/Childs'
+import Comments from './components/Comments'
 import Parent from './components/Parent'
 import Child from './components/Child'
 import Teacher from './components/Teacher'
-
+import Comment from './components/Comment'
 
 main()
 
@@ -17,17 +18,21 @@ main()
 			  
 	 })
 		 
-
-
 	navParent()
 	navTeacher()
-    navChild() 
+	navChild() 
+	navComment()
     addParents()
     addTeachers()
 	addChildrens()
 	viewSingleParent()
 	viewSingleChild()
 	viewSingleTeacher()
+	addComment()
+	viewSingleComment()
+	updateComment()
+	deleteSingleComment()
+	
 }
 
 function navParent() {
@@ -52,6 +57,14 @@ function navChild() {
 	events.on(childButton, 'click', ()=> {
 		api.getRequest('http://localhost:8080/childrens', childrens => { 
 			getAppContext().innerHTML = Childrens(childrens)
+		})
+	})
+}
+function navComment() {
+	const commentButton = document.querySelector('.nav__comments');
+	events.on(commentButton, 'click', ()=> {
+		api.getRequest('http://localhost:8080/childrens', comments => { 
+			getAppContext().innerHTML = Comments(comments)
 		})
 	})
 }
@@ -89,6 +102,18 @@ function addTeachers() {
 		}
 	})
 }
+function addComment() {
+	events.on(getAppContext(), 'click', () => {
+	  if(event.target.classList.contains('add__comment__button')) {
+		const commentContent = event.target.parentElement.querySelector('.add__comment').value
+		const teacherId = event.target.parentElement.querySelector('.add__teacher').value
+		api.postRequest('http://localhost:8080/teachers/comments/add', {
+		  commentContent: commentContent,
+		  teacherId: teacherId
+		}, (teachers) => getAppContext().innerHTML = Teachers(teachers))
+	  }
+	})
+  }
 function addChildrens() {
 	events.on(getAppContext(), 'click', ()=> {
 		if(event.target.classList.contains('add__child__button')) {
@@ -115,11 +140,8 @@ function viewSingleParent() {
 }
 function viewSingleChild() {
 	events.on(getAppContext(), 'click', () => {
-		console.log("did this work?1")
 		if(event.target.classList.contains('children__childrenName')) {
-			console.log("did this work?2")
 			api.getRequest(`http://localhost:8080/childrens/ ${event.target.id}`, child => {
-				console.log("did this work?3")
 				getAppContext().innerHTML = Child(child)
 			})
 		}
@@ -133,7 +155,38 @@ function viewSingleTeacher() {
 			})
 		}
 	})
-}
+} 
+  function viewSingleComment() {
+	  events.on(getAppContext(), 'click', () => {
+		  if(event.target.classList.contains('comment__commentContent')) {
+			  api.getRequest(`http://localhost:8080/teachers/comments/${event.target.id}`, comment => {
+				  getAppContext().innerHTML = Comment(comment)
+			  })
+		  }
+	  })
+  }
+  
+  function updateComment() {
+	events.on(getAppContext(), 'click', () => {
+	  if(event.target.classList.contains('update__comment')) {
+		const newContent = event.target.parentElement.querySelector('.update__comment').value
+		api.postRequest(`http://localhost:8080/comments/update/${event.target.id}`, {
+		  newContent: newContent,
+		}, (comment) => getAppContext().innerHTML = Comment(comment))
+	  }
+	})
+  }
+  
+  function deleteSingleComment() {
+	events.on(getAppContext(), 'click', () => {
+		  if(event.target.classList.contains('delete__teacher')) {
+		api.deleteRequest(`http://localhost:8080/comments/delete/${event.target.id}`, teacher => {
+				  getAppContext().innerHTML = Teacher(teacher)
+		})
+	  }
+	})
+  }
+
 
 function getAppContext() {
 	return document.querySelector('#app');

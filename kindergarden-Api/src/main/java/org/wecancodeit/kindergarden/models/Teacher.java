@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,6 +24,9 @@ public class Teacher {
 	@JsonIgnore
 	@ManyToMany(mappedBy="teachers")
 	private Collection<Child> childrens;
+	@JsonIgnore
+	@OneToMany(mappedBy="teacher")
+	private Collection<Comment> comments;
 	
 	public Teacher() {}
 	
@@ -33,6 +37,7 @@ public class Teacher {
 		this.subjectName = subjectName;
 		this.studentsCount = studentsCount;
 		this.childrens = new ArrayList<Child>();
+		this.comments = new ArrayList<Comment>();
 	
 	}
 	
@@ -54,6 +59,10 @@ public class Teacher {
 	
 	public Collection<Child> getChildrens() {
 		return childrens;
+	}
+	
+	public Collection<Comment> getComments() {
+		return comments;
 	}
 	@Override
 	public String toString() {

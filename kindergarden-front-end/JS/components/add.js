@@ -26,9 +26,6 @@ function addChildrens() {
         `
 }
 
-
-
-
 function addTeachers() {
     return `
     <section class="add__teacher">

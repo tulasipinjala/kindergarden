@@ -12,8 +12,7 @@ export default function Teachers(teachers) {
     }).join('')}
             </ul>
             <section class="add__teacher">
-        <h3>Add Teacher</h3>
-        
+            <h3>Add Teacher</h3>
             <input type="text" class="add__firstName" placeholder="first name">
             <input type="text" class="add__lastName" placeholder="last name">
             <input type="text" class="add__subjectName" placeholder="subject name">

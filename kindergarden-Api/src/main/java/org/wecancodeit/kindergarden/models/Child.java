@@ -23,12 +23,15 @@ private String firstName;
 private String lastName;
 private String age;
 
+
 @ManyToOne
 @JsonIgnore
 private Parent parent;
 @ManyToMany
 @JsonIgnore
 private Collection<Teacher> teachers;
+
+
 
 public Child() {}
 

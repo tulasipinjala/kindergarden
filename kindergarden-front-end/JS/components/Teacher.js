@@ -11,13 +11,12 @@ export default function Teacher(teacher) {
         <h4 class="teacher__teacherStudentsCount email">Number of Students: ${teacher.studentsCount}</h4>
         <h4 class="teacher__teacherComment>Comment: ${Comments.content}</h4>
        
+        <ul class="children">
+         
+        <li class="children">${Childs(teacher.child)}</li>
+    </ul>
 
-        <section class="add__child">
-        <input type="text" class="add__firstName" placeholder="first name">
-        <input type="text" class="add__lastName" placeholder="last name">
-        <input type="text" class="add__age" placeholder="age">
-            <button class="add__child__button" id="${teacher.id}">Add Student</button>
-        </section>
+        
 
         <section class="add__comment">
         <input type="text" class="add__content" placeholder="comment">

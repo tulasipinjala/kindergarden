@@ -57,7 +57,7 @@ public class Teacher {
 		return studentsCount;
 	}
 	
-	public Collection<Child> getChildrens() {
+	public Collection<Child> getChild() {
 		return childrens;
 	}
 	

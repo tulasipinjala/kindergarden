@@ -371,7 +371,7 @@ var _Childs = _interopRequireDefault(require("./Childs"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Parent(parent) {
-  return "\n    <div class=\"parent__container\">\n        <h3 class=\"parent__parentName name\">Parent: ".concat(parent.firstName, " ").concat(parent.lastName, "</h3>\n        <h4 class=\"parent__parentPhoneNumber phone\">Phone: ").concat(parent.phoneNumber, "</h4>\n        <h4 class=\"parent__parentEmail email\">e-mail: ").concat(parent.email, "</h4>\n \n        \n\n        <section class=\"add__child\">\n        <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n        <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n        <input type=\"select\" class=\"add__age\" placeholder=\"age\">\n            <button class=\"add__child__button\" id=\"").concat(parent.id, "\">Add Child</button>\n        </section>\n    </div>\n            ");
+  return "\n    <div class=\"parent__container\">\n        <h3 class=\"parent__parentName name\">Parent: ".concat(parent.firstName, " ").concat(parent.lastName, "</h3>\n        <h4 class=\"parent__parentPhoneNumber phone\">Phone: ").concat(parent.phoneNumber, "</h4>\n        <h4 class=\"parent__parentEmail email\">e-mail: ").concat(parent.email, "</h4>\n    \n        <ul class=\"children\">\n         \n            <li class=\"children\">").concat((0, _Childs.default)(parent.child), "</li>\n        </ul>\n\n        \n\n        \n    </div>\n            ");
 }
 },{"./Childs":"JS/components/Childs.js"}],"JS/components/Child.js":[function(require,module,exports) {
 "use strict";
@@ -412,7 +412,7 @@ var _Comment = _interopRequireDefault(require("./Comment"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Teacher(teacher) {
-  return "\n    <div class=\"teacher__container\">\n        <h3 class=\"teacher__teacherName name\">Teacher: ".concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>\n        <h4 class=\"teacher__teacherSubjectName Subject\">Subject: ").concat(teacher.subjectName, "</h4>\n        <h4 class=\"teacher__teacherStudentsCount email\">Number of Students: ").concat(teacher.studentsCount, "</h4>\n        <h4 class=\"teacher__teacherComment>Comment: ").concat(_Comments.default.content, "</h4>\n       \n\n        <section class=\"add__child\">\n        <input type=\"text\" class=\"add__firstName\" placeholder=\"first name\">\n        <input type=\"text\" class=\"add__lastName\" placeholder=\"last name\">\n        <input type=\"text\" class=\"add__age\" placeholder=\"age\">\n            <button class=\"add__child__button\" id=\"").concat(teacher.id, "\">Add Student</button>\n        </section>\n\n        <section class=\"add__comment\">\n        <input type=\"text\" class=\"add__content\" placeholder=\"comment\">\n            <button class=\"add__comment__button\" id=\"").concat(teacher.id, "\">Add Comment</button>\n        </section>\n\n    \n\n    </div>\n            ");
+  return "\n    <div class=\"teacher__container\">\n        <h3 class=\"teacher__teacherName name\">Teacher: ".concat(teacher.firstName, " ").concat(teacher.lastName, "</h3>\n        <h4 class=\"teacher__teacherSubjectName Subject\">Subject: ").concat(teacher.subjectName, "</h4>\n        <h4 class=\"teacher__teacherStudentsCount email\">Number of Students: ").concat(teacher.studentsCount, "</h4>\n        <h4 class=\"teacher__teacherComment>Comment: ").concat(_Comments.default.content, "</h4>\n       \n        <ul class=\"children\">\n         \n        <li class=\"children\">").concat((0, _Childs.default)(teacher.child), "</li>\n    </ul>\n\n        \n\n        <section class=\"add__comment\">\n        <input type=\"text\" class=\"add__content\" placeholder=\"comment\">\n            <button class=\"add__comment__button\" id=\"").concat(teacher.id, "\">Add Comment</button>\n        </section>\n\n    \n\n    </div>\n            ");
 }
 },{"./Childs":"JS/components/Childs.js","./Comments":"JS/components/Comments.js","./Comment":"JS/components/Comment.js"}],"JS/app.js":[function(require,module,exports) {
 "use strict";
@@ -669,7 +669,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54145" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54666" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
